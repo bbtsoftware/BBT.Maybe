@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<package xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <metadata xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
+    <id>BBT.Maybe</id>
+    <title>BBT Maybe</title>
+    <version>0.0.0</version>
+    <authors>BBT Software AG</authors>
+    <owners>bbtsoftware</owners>
+    <summary>An option type for .NET.</summary>
+    <description>An option type for .NET.</description>
+    <license type="expression">MIT</license>
+    <projectUrl>https://github.com/bbtsoftware/BBT.Maybe/</projectUrl>
+    <iconUrl>https://raw.githubusercontent.com/bbtsoftware/BBT.Maybe/de51feaf705f283540a21b1cb7c317ed36cbd03e/nuspec/nuget/icon.png</iconUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <repository type="git" url="https://github.com/bbtsoftware/BBT.Maybe"/>
+    <copyright>Copyright © BBT Software AG</copyright>
+    <tags>Maybe Functional</tags>
+    <releaseNotes>https://github.com/bbtsoftware/BBT.Maybe/releases/tag/1.0.0</releaseNotes>
+  </metadata>
+  <files>
+    <file src="netstandard2.0\BBT.Maybe.dll" target="lib\netstandard2.0" />
+    <file src="netstandard2.0\BBT.Maybe.pdb" target="lib\netstandard2.0" />
+    <file src="netstandard2.0\BBT.Maybe.xml" target="lib\netstandard2.0" />
+  </files>
+</package>
