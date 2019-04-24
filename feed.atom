@@ -1,0 +1,8 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+	<id>http://bbtsoftware.github.io/BBT.Maybe</id>
+	<title>BBT.Maybe</title>
+	<link rel="self" href="http://bbtsoftware.github.io/BBT.Maybe" />
+	<rights>2019</rights>
+	<updated>2019-04-24T15:35:26Z</updated>
+</feed>
