@@ -15,7 +15,7 @@ An option type for .NET.
 
 |Develop|Master|
 |:--:|:--:|
-|[![Build status](https://ci.appveyor.com/api/projects/status/vo6s6rr35xq9pk7h/branch/develop?svg=true)](https://ci.appveyor.com/project/BBTSoftwareAG/BBT.Maybe/branch/develop)|[![Build status](https://ci.appveyor.com/api/projects/status/vo6s6rr35xq9pk7h/branch/master?svg=true)](https://ci.appveyor.com/project/BBTSoftwareAG/BBT.Maybe/branch/master)|
+|[![Build status](https://ci.appveyor.com/api/projects/status/vo6s6rr35xq9pk7h/branch/develop?svg=true)](https://ci.appveyor.com/project/BBTSoftwareAG/bbt-maybe/branch/develop)|[![Build status](https://ci.appveyor.com/api/projects/status/vo6s6rr35xq9pk7h/branch/master?svg=true)](https://ci.appveyor.com/project/BBTSoftwareAG/bbt-maybe/branch/master)|
 
 ## Code Coverage
 
