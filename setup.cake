@@ -11,7 +11,8 @@ BuildParameters.SetParameters(
     repositoryName: "BBT.Maybe",
     appVeyorAccountName: "BBTSoftwareAG",
     shouldPublishMyGet: false,
-    shouldRunCodecov: false);
+    shouldRunCodecov: false,
+    shouldDeployGraphDocumentation: false);
 
 BuildParameters.PrintParameters(Context);
 
