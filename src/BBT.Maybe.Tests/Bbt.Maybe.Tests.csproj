@@ -21,6 +21,7 @@
 
   <ItemGroup>
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.0.1" />
+    <PackageReference Include="Shouldly" Version="4.0.0-beta0001" />
     <PackageReference Include="xunit" Version="2.4.1" />
     <PackageReference Include="xunit.runner.visualstudio" Version="2.4.1">
       <PrivateAssets>all</PrivateAssets>
@@ -28,7 +29,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Bbt.Maybe\Bbt.Maybe.csproj" />
+    <ProjectReference Include="..\Bbt.Maybe\BBT.Maybe.csproj" />
   </ItemGroup>
 
 </Project>
