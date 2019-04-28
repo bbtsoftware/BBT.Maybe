@@ -1,7 +1,7 @@
-﻿namespace Bbt.Maybe.Tests
+﻿namespace BBT.Maybe.Tests
 {
-    using Bbt.Maybe;
-    using Bbt.Maybe.Tests.TestData;
+    using BBT.Maybe;
+    using BBT.Maybe.Tests.TestData;
     using Shouldly;
     using Xunit;
 

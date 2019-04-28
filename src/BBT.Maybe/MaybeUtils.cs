@@ -1,4 +1,4 @@
-﻿namespace Bbt.Maybe
+﻿namespace BBT.Maybe
 {
     using System;
     using System.Globalization;

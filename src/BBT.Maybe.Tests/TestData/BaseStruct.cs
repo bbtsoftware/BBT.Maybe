@@ -1,4 +1,4 @@
-﻿namespace Bbt.Maybe.Tests.TestData
+﻿namespace BBT.Maybe.Tests.TestData
 {
     /// <summary>
     /// Used for test purposes.

@@ -1,36 +1,36 @@
-﻿namespace Bbt.Maybe
+﻿namespace BBT.Maybe
 {
     using System;
     using System.Runtime.Serialization;
 
     /// <summary>
-    /// Represents a reference type which may be null or not null.
+    /// Represents a nullable value type which may be null or not null.
     /// </summary>
     /// <remarks>
     /// Implementation of the "maybe monad" pattern / Optional-pattern.
     /// https://smellegantcode.wordpress.com/2008/12/11/the-maybe-monad-in-c/.
     /// </remarks>
-    /// <typeparam name="T">The reference type.</typeparam>
+    /// <typeparam name="T">The value type.</typeparam>
     [Serializable]
-    public struct Maybe<T> : ISerializable, IEquatable<Maybe<T>>
-        where T : class
+    public struct MaybeStruct<T> : ISerializable, IEquatable<MaybeStruct<T>>
+        where T : struct
     {
-        private readonly T mValue;
+        private readonly T? mValue;
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="Maybe{T}"/> struct.
+        /// Initializes a new instance of the <see cref="MaybeStruct{T}"/> struct.
         /// </summary>
         /// <param name="aValueNullable">The potentially nullable value.</param>
-        internal Maybe(T aValueNullable)
+        internal MaybeStruct(T? aValueNullable)
         {
             this.mValue = aValueNullable;
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="Maybe{T}"/> struct.
+        /// Initializes a new instance of the <see cref="MaybeStruct{T}"/> struct.
         /// Constructor used for deserialization.
         /// </summary>
-        private Maybe(SerializationInfo aInfo, StreamingContext aContext)
+        private MaybeStruct(SerializationInfo aInfo, StreamingContext aContext)
         {
             MaybeUtils.CheckArgumentNotNull(aInfo, nameof(aInfo));
             this.mValue = MaybeUtils.GetDeserializedValue<T>(aInfo, nameof(this.mValue));
@@ -40,14 +40,14 @@
         /// Gets a value indicating whether <see cref="Maybe"/> has a value (true)
         /// or is representing the null case (false).
         /// </summary>
-        public bool HasValue => this.mValue != null;
+        public bool HasValue => this.mValue.HasValue;
 
         /// <summary>
         /// Checks whether the operands are equal.
         /// </summary>
         /// <param name="aA">Maybe to compare.</param>
         /// <param name="aB">Maybe to compare.</param>
-        public static bool operator ==(Maybe<T> aA, Maybe<T> aB)
+        public static bool operator ==(MaybeStruct<T> aA, MaybeStruct<T> aB)
         {
             return object.Equals(aA.mValue, aB.mValue);
         }
@@ -57,13 +57,13 @@
         /// </summary>
         /// <param name="aA">Maybe to compare.</param>
         /// <param name="aB">Maybe to compare.</param>
-        public static bool operator !=(Maybe<T> aA, Maybe<T> aB)
+        public static bool operator !=(MaybeStruct<T> aA, MaybeStruct<T> aB)
         {
             return !(aA == aB);
         }
 
         /// <summary>
-        /// Executes <paramref name="aDoAction"/> if value is not null.
+        /// Starts <paramref name="aDoAction"/> if value is not null.
         /// </summary>
         /// <param name="aDoAction">The action which is performed if maybe is not none.</param>
         /// <returns>The none case.</returns>
@@ -71,9 +71,9 @@
         {
             MaybeUtils.CheckArgumentNotNull(aDoAction, nameof(aDoAction));
 
-            if (this.mValue != null)
+            if (this.mValue.HasValue)
             {
-                aDoAction(this.mValue);
+                aDoAction(this.mValue.Value);
                 return new NoneCase(false);
             }
 
@@ -86,13 +86,13 @@
         /// <typeparam name="TResult">The type of the projected result.</typeparam>
         /// <param name="aFunc">The projection function.</param>
         /// <returns>The projected maybe.</returns>
-        public Maybe<TResult> Some<TResult>(Func<T, TResult> aFunc)
-            where TResult : class
+        public MaybeStruct<TResult> Some<TResult>(Func<T, TResult?> aFunc)
+            where TResult : struct
         {
             MaybeUtils.CheckArgumentNotNull(aFunc, nameof(aFunc));
 
-            var lMaybe = Maybe.None<TResult>();
-            this.Do(aX => lMaybe = Maybe.Some(aFunc(aX)));
+            var lMaybe = Maybe.NoneStruct<TResult>();
+            this.Do(aX => lMaybe = Maybe.SomeStruct(aFunc(aX)));
 
             return lMaybe;
         }
@@ -108,30 +108,31 @@
             string aMaybeParameterName,
             string aAdditionalMessage = "")
         {
-            return MaybeUtils.CheckParameterNotNull(this.mValue, aMaybeParameterName, aAdditionalMessage);
+            return MaybeUtils.CheckParameterNotNull(this.mValue, aMaybeParameterName, aAdditionalMessage)
+                .Value;
         }
 
         /// <summary>
         /// See <see cref="object.Equals(object)"/>.
         /// </summary>
-        /// <param name="aObj">The object to compare.</param>
+        /// <param name="aObj">The maybe to compare.</param>
         /// <returns>True if equal, false otherwise.</returns>
         public override bool Equals(object aObj)
         {
-            if (!(aObj is Maybe<T>))
+            if (!(aObj is MaybeStruct<T>))
             {
                 return false;
             }
 
-            return this.Equals((Maybe<T>)aObj);
+            return this.Equals((MaybeStruct<T>)aObj);
         }
 
         /// <summary>
         /// See <see cref="IEquatable{T}.Equals(T)"/>.
         /// </summary>
-        /// <param name="aOther">The maybe to compare.</param>
+        /// <param name="aOther">The value to compare.</param>
         /// <returns>True if equal, false otherwise.</returns>
-        public bool Equals(Maybe<T> aOther)
+        public bool Equals(MaybeStruct<T> aOther)
         {
             return this == aOther;
         }
@@ -142,7 +143,7 @@
         /// <returns>The hash code.</returns>
         public override int GetHashCode()
         {
-            if (this.HasValue)
+            if (this.mValue != null)
             {
                 this.mValue.GetHashCode();
             }
@@ -157,10 +158,7 @@
         /// <param name="aContext">The streaming context.</param>
         public void GetObjectData(SerializationInfo aInfo, StreamingContext aContext)
         {
-            if (aInfo == null)
-            {
-                throw new ArgumentNullException(nameof(aInfo));
-            }
+            MaybeUtils.CheckArgumentNotNull(aInfo, nameof(aInfo));
 
             aInfo.AddValue(nameof(this.mValue), this.mValue, typeof(T));
         }
