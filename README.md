@@ -34,9 +34,3 @@ On Windows PowerShell run:
 ```powershell
 ./build
 ```
-
-On OSX/Linux run:
-
-```bash
-./build.sh
-```
