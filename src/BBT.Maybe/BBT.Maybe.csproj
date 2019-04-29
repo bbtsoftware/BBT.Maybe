@@ -7,7 +7,7 @@
     <Product>BBT.Maybe</Product>
     <Description>An option type for .NET</Description>
     <Copyright>Copyright © BBT Software AG</Copyright>
-    <CodeAnalysisRuleSet>..\Bbt.Maybe.ruleset</CodeAnalysisRuleSet>
+    <CodeAnalysisRuleSet>..\BBT.Maybe.ruleset</CodeAnalysisRuleSet>
     <DocumentationFile>bin\$(Configuration)\Bbt.Maybe.XML</DocumentationFile>
     <OutputPath>bin\$(Configuration)\</OutputPath>
     <DebugSymbols>true</DebugSymbols>
