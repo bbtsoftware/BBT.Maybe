@@ -13,42 +13,42 @@
             public void DerivedCast_ShouldReturnMaybeBase()
             {
                 // Arrange
-                var lDerivedClass = new DerivedClass();
-                var lMaybeDerivedClass = Maybe.Some(lDerivedClass);
+                var derivedClass = new DerivedClass();
+                var maybeDerivedClass = Maybe.Some(derivedClass);
 
                 // Act
-                var lMaybeBaseClass = lMaybeDerivedClass.Some<BaseClass>(aX => aX);
+                var maybeBaseClass = maybeDerivedClass.Some<BaseClass>(x => x);
 
                 // Assert
-                lMaybeBaseClass.ShouldBe(Maybe.Some<BaseClass>(lDerivedClass));
+                maybeBaseClass.ShouldBe(Maybe.Some<BaseClass>(derivedClass));
             }
 
             [Fact]
             public void ProjectToReferencingClass_ShouldReturnMaybeReferencingClass()
             {
                 // Arrange
-                var lReferencedClass = new ReferencedClass();
-                var lReferencingClass = new BaseClass();
-                lReferencedClass.ReferencingClass = lReferencingClass;
+                var referencedClass = new ReferencedClass();
+                var referencingClass = new BaseClass();
+                referencedClass.ReferencingClass = referencingClass;
 
                 // Act
-                var lMaybeReferencingClass = Maybe.Some(lReferencedClass).Some(aX => aX.ReferencingClass);
+                var maybeReferencingClass = Maybe.Some(referencedClass).Some(x => x.ReferencingClass);
 
                 // Assert
-                lMaybeReferencingClass.ShouldBe(Maybe.Some<BaseClass>(lReferencingClass));
+                maybeReferencingClass.ShouldBe(Maybe.Some<BaseClass>(referencingClass));
             }
 
             [Fact]
             public void None_ShouldReturnMaybeNone()
             {
                 // Arrange
-                var lMaybeReferencedClass = Maybe.None<ReferencedClass>();
+                var maybeReferencedClass = Maybe.None<ReferencedClass>();
 
                 // Act
-                var lMaybeReferencingClass = lMaybeReferencedClass.Some(aX => aX.ReferencingClass);
+                var maybeReferencingClass = maybeReferencedClass.Some(x => x.ReferencingClass);
 
                 // Assert
-                lMaybeReferencingClass.ShouldBe(Maybe.None<BaseClass>());
+                maybeReferencingClass.ShouldBe(Maybe.None<BaseClass>());
             }
         }
 
@@ -58,28 +58,28 @@
             public void MaybeValueNotSet_ActionNotCalled()
             {
                 // Arrange
-                var lMaybeNone = Maybe.None<BaseClass>();
-                var lCalled = false;
+                var maybeNone = Maybe.None<BaseClass>();
+                var called = false;
 
                 // Act
-                lMaybeNone.Do(aX => lCalled = true);
+                maybeNone.Do(x => called = true);
 
                 // Assert
-                lCalled.ShouldBeFalse();
+                called.ShouldBeFalse();
             }
 
             [Fact]
             public void MaybeValueSet_ActionCalled()
             {
                 // Arrange
-                var lMaybeNone = Maybe.Some<BaseClass>(new BaseClass());
-                var lCalled = false;
+                var maybeNone = Maybe.Some<BaseClass>(new BaseClass());
+                var called = false;
 
                 // Act
-                lMaybeNone.Do(aX => lCalled = true);
+                maybeNone.Do(x => called = true);
 
                 // Assert
-                lCalled.ShouldBeTrue();
+                called.ShouldBeTrue();
             }
         }
 
@@ -89,28 +89,28 @@
             public void MaybeValueNotSet_DoIfNoneActionCalled()
             {
                 // Arrange
-                var lMaybeNone = Maybe.None<BaseClass>();
-                var lCalled = false;
+                var maybeNone = Maybe.None<BaseClass>();
+                var called = false;
 
                 // Act
-                lMaybeNone.Do(aX => { }).DoIfNone(() => lCalled = true);
+                maybeNone.Do(x => { }).DoIfNone(() => called = true);
 
                 // Assert
-                lCalled.ShouldBeTrue();
+                called.ShouldBeTrue();
             }
 
             [Fact]
             public void MaybeValueSet_ActionNotCalled()
             {
                 // Arrange
-                var lMaybeNone = Maybe.Some<BaseClass>(new BaseClass());
-                var lCalled = false;
+                var maybeNone = Maybe.Some<BaseClass>(new BaseClass());
+                var called = false;
 
                 // Act
-                lMaybeNone.Do(aX => { }).DoIfNone(() => lCalled = true);
+                maybeNone.Do(x => { }).DoIfNone(() => called = true);
 
                 // Assert
-                lCalled.ShouldBeFalse();
+                called.ShouldBeFalse();
             }
         }
 
@@ -120,89 +120,89 @@
             public void BothNone_ReturnsTrue()
             {
                 // Arrange
-                var lMaybeNone = Maybe.None<BaseClass>();
-                var lMaybeNone2 = Maybe.None<BaseClass>();
+                var maybeNone = Maybe.None<BaseClass>();
+                var maybeNone2 = Maybe.None<BaseClass>();
 
                 // Act
-                var lIsEqual = object.Equals(lMaybeNone, lMaybeNone2);
+                var isEqual = object.Equals(maybeNone, maybeNone2);
 
                 // Assert
-                lIsEqual.ShouldBeTrue();
+                isEqual.ShouldBeTrue();
             }
 
             [Fact]
             public void BothNoneOfDerivedType_ReturnsFalse()
             {
                 // Arrange
-                var lMaybeNone = Maybe.None<BaseClass>();
-                var lMaybeNone2 = Maybe.None<DerivedClass>();
+                var maybeNone = Maybe.None<BaseClass>();
+                var maybeNone2 = Maybe.None<DerivedClass>();
 
                 // Act
-                var lIsEqual = object.Equals(lMaybeNone, lMaybeNone2);
+                var isEqual = object.Equals(maybeNone, maybeNone2);
 
                 // Assert
-                lIsEqual.ShouldBeFalse();
+                isEqual.ShouldBeFalse();
             }
 
             [Fact]
             public void BothSameValue_ReturnsTrue()
             {
                 // Arrange
-                var lBaseClass = new BaseClass();
-                var lMaybeNone = Maybe.Some(lBaseClass);
-                var lMaybeNone2 = Maybe.Some(lBaseClass);
+                var baseClass = new BaseClass();
+                var maybeNone = Maybe.Some(baseClass);
+                var maybeNone2 = Maybe.Some(baseClass);
 
                 // Act
-                var lIsEqual = object.Equals(lMaybeNone, lMaybeNone2);
+                var isEqual = object.Equals(maybeNone, maybeNone2);
 
                 // Assert
-                lIsEqual.ShouldBeTrue();
+                isEqual.ShouldBeTrue();
             }
 
             [Fact]
             public void BothSameValueButDerivedType_ReturnsFalse()
             {
                 // Arrange
-                var lDerivedClass = new DerivedClass();
-                var lMaybeNone = Maybe.Some<DerivedClass>(lDerivedClass);
-                var lMaybeNone2 = Maybe.Some<BaseClass>(lDerivedClass);
+                var derivedClass = new DerivedClass();
+                var maybeNone = Maybe.Some<DerivedClass>(derivedClass);
+                var maybeNone2 = Maybe.Some<BaseClass>(derivedClass);
 
                 // Act
-                var lIsEqual = object.Equals(lMaybeNone, lMaybeNone2);
+                var isEqual = object.Equals(maybeNone, maybeNone2);
 
                 // Assert
-                lIsEqual.ShouldBeFalse();
+                isEqual.ShouldBeFalse();
             }
 
             [Fact]
             public void BothNotSame_ReturnsFalse()
             {
                 // Arrange
-                var lClass = new BaseClass();
-                var lClass2 = new BaseClass();
-                var lMaybeNone = Maybe.Some(lClass);
-                var lMaybeNone2 = Maybe.Some(lClass2);
+                var baseClass = new BaseClass();
+                var baseClass2 = new BaseClass();
+                var maybeNone = Maybe.Some(baseClass);
+                var maybeNone2 = Maybe.Some(baseClass2);
 
                 // Act
-                var lIsEqual = object.Equals(lMaybeNone, lMaybeNone2);
+                var isEqual = object.Equals(maybeNone, maybeNone2);
 
                 // Assert
-                lIsEqual.ShouldBeFalse();
+                isEqual.ShouldBeFalse();
             }
 
             [Fact]
             public void NoneAndNotNone_ReturnsFalse()
             {
                 // Arrange
-                var lClass = new BaseClass();
-                var lMaybeNone = Maybe.Some<BaseClass>(lClass);
-                var lMaybeNone2 = Maybe.None<BaseClass>();
+                var baseClass = new BaseClass();
+                var maybeNone = Maybe.Some<BaseClass>(baseClass);
+                var maybeNone2 = Maybe.None<BaseClass>();
 
                 // Act
-                var lIsEqual = object.Equals(lMaybeNone, lMaybeNone2);
+                var isEqual = object.Equals(maybeNone, maybeNone2);
 
                 // Assert
-                lIsEqual.ShouldBeFalse();
+                isEqual.ShouldBeFalse();
             }
         }
     }

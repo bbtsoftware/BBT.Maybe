@@ -13,29 +13,29 @@
             public void ProjectToReferencingClass_ShouldReturnMaybeReferencingClass()
             {
                 // Arrange
-                var lReferencedStruct = default(ReferencedStruct);
-                var lReferencingStruct = default(BaseStruct);
-                lReferencedStruct.ReferencingStruct = lReferencingStruct;
+                var referencedStruct = default(ReferencedStruct);
+                var referencingStruct = default(BaseStruct);
+                referencedStruct.ReferencingStruct = referencingStruct;
 
                 // Act
-                var lMaybeReferencingStruct = Maybe.SomeStruct<ReferencedStruct>(lReferencedStruct)
-                    .Some<BaseStruct>(aX => aX.ReferencingStruct);
+                var maybeReferencingStruct = Maybe.SomeStruct<ReferencedStruct>(referencedStruct)
+                    .Some<BaseStruct>(x => x.ReferencingStruct);
 
                 // Assert
-                lMaybeReferencingStruct.ShouldBe(Maybe.SomeStruct<BaseStruct>(lReferencingStruct));
+                maybeReferencingStruct.ShouldBe(Maybe.SomeStruct<BaseStruct>(referencingStruct));
             }
 
             [Fact]
             public void None_ShouldReturnMaybeNone()
             {
                 // Arrange
-                var lMaybeReferencedStruct = Maybe.NoneStruct<ReferencedStruct>();
+                var maybeReferencedStruct = Maybe.NoneStruct<ReferencedStruct>();
 
                 // Act
-                var lMaybeReferencingStruct = lMaybeReferencedStruct.Some<BaseStruct>(aX => aX.ReferencingStruct);
+                var maybeReferencingStruct = maybeReferencedStruct.Some<BaseStruct>(x => x.ReferencingStruct);
 
                 // Assert
-                lMaybeReferencingStruct.ShouldBe(Maybe.NoneStruct<BaseStruct>());
+                maybeReferencingStruct.ShouldBe(Maybe.NoneStruct<BaseStruct>());
             }
         }
 
@@ -45,14 +45,14 @@
             public void MaybeValueNotSet_ActionNotCalled()
             {
                 // Arrange
-                var lMaybeNone = Maybe.NoneStruct<BaseStruct>();
-                var lCalled = false;
+                var maybeNone = Maybe.NoneStruct<BaseStruct>();
+                var called = false;
 
                 // Act
-                lMaybeNone.Do(aX => lCalled = true);
+                maybeNone.Do(x => called = true);
 
                 // Assert
-                lCalled.ShouldBeFalse();
+                called.ShouldBeFalse();
             }
 
             /// <summary>
@@ -62,14 +62,14 @@
             public void MaybeValueSet_ActionCalled()
             {
                 // Arrange
-                var lMaybeNone = Maybe.SomeStruct<BaseStruct>(default(BaseStruct));
-                var lCalled = false;
+                var maybeNone = Maybe.SomeStruct<BaseStruct>(default(BaseStruct));
+                var called = false;
 
                 // Act
-                lMaybeNone.Do(aX => lCalled = true);
+                maybeNone.Do(x => called = true);
 
                 // Assert
-                lCalled.ShouldBeTrue();
+                called.ShouldBeTrue();
             }
         }
 
@@ -79,28 +79,28 @@
             public void MaybeValueNotSet_DoIfNoneActionCalled()
             {
                 // Arrange
-                var lMaybeNone = Maybe.NoneStruct<BaseStruct>();
-                var lCalled = false;
+                var maybeNone = Maybe.NoneStruct<BaseStruct>();
+                var called = false;
 
                 // Act
-                lMaybeNone.Do(aX => { }).DoIfNone(() => lCalled = true);
+                maybeNone.Do(x => { }).DoIfNone(() => called = true);
 
                 // Assert
-                lCalled.ShouldBeTrue();
+                called.ShouldBeTrue();
             }
 
             [Fact]
             public void MaybeValueSet_ActionNotCalled()
             {
                 // Arrange
-                var lMaybeNone = Maybe.SomeStruct<BaseStruct>(default(BaseStruct));
-                var lCalled = false;
+                var maybeNone = Maybe.SomeStruct<BaseStruct>(default(BaseStruct));
+                var called = false;
 
                 // Act
-                lMaybeNone.Do(aX => { }).DoIfNone(() => lCalled = true);
+                maybeNone.Do(x => { }).DoIfNone(() => called = true);
 
                 // Assert
-                lCalled.ShouldBeFalse();
+                called.ShouldBeFalse();
             }
         }
 
@@ -110,44 +110,44 @@
             public void BothNone_ReturnsTrue()
             {
                 // Arrange
-                var lMaybeNone = Maybe.NoneStruct<BaseStruct>();
-                var lMaybeNone2 = Maybe.NoneStruct<BaseStruct>();
+                var maybeNone = Maybe.NoneStruct<BaseStruct>();
+                var maybeNone2 = Maybe.NoneStruct<BaseStruct>();
 
                 // Act
-                var lIsEqual = object.Equals(lMaybeNone, lMaybeNone2);
+                var isEqual = object.Equals(maybeNone, maybeNone2);
 
                 // Assert
-                lIsEqual.ShouldBeTrue();
+                isEqual.ShouldBeTrue();
             }
 
             [Fact]
             public void BothSameValue_ReturnsTrue()
             {
                 // Arrange
-                var lBaseStruct = default(BaseStruct);
-                var lMaybeNone = Maybe.SomeStruct<BaseStruct>(lBaseStruct);
-                var lMaybeNone2 = Maybe.SomeStruct<BaseStruct>(lBaseStruct);
+                var baseStruct = default(BaseStruct);
+                var maybeNone = Maybe.SomeStruct<BaseStruct>(baseStruct);
+                var maybeNone2 = Maybe.SomeStruct<BaseStruct>(baseStruct);
 
                 // Act
-                var lIsEqual = object.Equals(lMaybeNone, lMaybeNone2);
+                var isEqual = object.Equals(maybeNone, maybeNone2);
 
                 // Assert
-                lIsEqual.ShouldBeTrue();
+                isEqual.ShouldBeTrue();
             }
 
             [Fact]
             public void NoneAndNotNone_ReturnsFalse()
             {
                 // Arrange
-                var lStruct = default(BaseStruct);
-                var lMaybeNone = Maybe.SomeStruct<BaseStruct>(lStruct);
-                var lMaybeNone2 = Maybe.NoneStruct<BaseStruct>();
+                var baseStruct = default(BaseStruct);
+                var maybeNone = Maybe.SomeStruct<BaseStruct>(baseStruct);
+                var maybeNone2 = Maybe.NoneStruct<BaseStruct>();
 
                 // Act
-                var lIsEqual = object.Equals(lMaybeNone, lMaybeNone2);
+                var isEqual = object.Equals(maybeNone, maybeNone2);
 
                 // Assert
-                lIsEqual.ShouldBeFalse();
+                isEqual.ShouldBeFalse();
             }
         }
     }
