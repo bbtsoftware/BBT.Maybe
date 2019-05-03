@@ -10,63 +10,63 @@
     internal static class MaybeUtils
     {
         /// <summary>
-        /// Asserts that <paramref name="aArg"/> is not null.
+        /// Asserts that <paramref name="arg"/> is not null.
         /// In case of null an <see cref="ArgumentNullException"/> is thrown.
         /// </summary>
         /// <typeparam name="T">The argument's type.</typeparam>
-        /// <param name="aArg">The argument.</param>
-        /// <param name="aArgName">The arguments name.</param>
+        /// <param name="arg">The argument.</param>
+        /// <param name="argName">The arguments name.</param>
         /// <returns>The argument.</returns>
-        internal static T CheckArgumentNotNull<T>(T aArg, string aArgName)
+        internal static T CheckArgumentNotNull<T>(T arg, string argName)
             where T : class
         {
-            if (aArg == null)
+            if (arg == null)
             {
-                throw new ArgumentNullException(aArgName);
+                throw new ArgumentNullException(argName);
             }
 
-            return aArg;
+            return arg;
         }
 
         /// <summary>
-        /// Asserts that <paramref name="aParameter"/> is not null.
+        /// Asserts that <paramref name="parameter"/> is not null.
         /// In case of null an <see cref="InvalidOperationException"/> is thrown.
         /// </summary>
         /// <typeparam name="T">The parameter's type.</typeparam>
-        /// <param name="aParameter">The parameter.</param>
-        /// <param name="aParameterName">The parameter's name.</param>
-        /// <param name="aAdditionalMessage">An optional additional error message.</param>
+        /// <param name="parameter">The parameter.</param>
+        /// <param name="parameterName">The parameter's name.</param>
+        /// <param name="additionalMessage">An optional additional error message.</param>
         /// <returns>The parameter.</returns>
         internal static T CheckParameterNotNull<T>(
-            T aParameter, string aParameterName, string aAdditionalMessage = "")
+            T parameter, string parameterName, string additionalMessage = "")
         {
-            if (aParameter == null)
+            if (parameter == null)
             {
-                var lMsg = $"({aParameterName}) may not be null.".ToString(CultureInfo.InvariantCulture);
-                if (!string.IsNullOrEmpty(aAdditionalMessage))
+                var msg = $"({parameterName}) may not be null.".ToString(CultureInfo.InvariantCulture);
+                if (!string.IsNullOrEmpty(additionalMessage))
                 {
-                    lMsg = lMsg + " " + aAdditionalMessage;
+                    msg = msg + " " + additionalMessage;
                 }
 
-                throw new InvalidOperationException(lMsg);
+                throw new InvalidOperationException(msg);
             }
 
-            return aParameter;
+            return parameter;
         }
 
         /// <summary>
-        /// Gets the casted value from <paramref name="aInfo"/>
-        /// corresponding to <paramref name="aKey"/>.
+        /// Gets the casted value from <paramref name="info"/>
+        /// corresponding to <paramref name="key"/>.
         /// </summary>
         /// <typeparam name="T">The value's type.</typeparam>
-        /// <param name="aInfo">The serialization info.</param>
-        /// <param name="aKey">The key.</param>
+        /// <param name="info">The serialization info.</param>
+        /// <param name="key">The key.</param>
         /// <returns>The corresponding value.</returns>
         internal static T GetDeserializedValue<T>(
-            SerializationInfo aInfo,
-            string aKey)
+            SerializationInfo info,
+            string key)
         {
-            return (T)aInfo.GetValue(aKey, typeof(T));
+            return (T)info.GetValue(key, typeof(T));
         }
     }
 }

@@ -12,28 +12,28 @@
             public void IsNotNoneCase_ISNotCalled()
             {
                 // Arrange
-                var lNoneCase = new NoneCase(false);
-                var lCalled = false;
+                var noneCase = new NoneCase(false);
+                var called = false;
 
                 // Act
-                lNoneCase.DoIfNone(() => lCalled = true);
+                noneCase.DoIfNone(() => called = true);
 
                 // Assert
-                lCalled.ShouldBeFalse();
+                called.ShouldBeFalse();
             }
 
             [Fact]
             public void IsNotNoneCase_IsCalled()
             {
                 // Arrange
-                var lNoneCase = new NoneCase(true);
-                var lCalled = false;
+                var noneCase = new NoneCase(true);
+                var called = false;
 
                 // Act
-                lNoneCase.DoIfNone(() => lCalled = true);
+                noneCase.DoIfNone(() => called = true);
 
                 // Assert
-                lCalled.ShouldBeTrue();
+                called.ShouldBeTrue();
             }
         }
 
@@ -43,42 +43,42 @@
             public void BothNoneCase_ReturnsTrue()
             {
                 // Arrange
-                var lNoneCase = new NoneCase(true);
-                var lNoneCase2 = new NoneCase(true);
+                var noneCase = new NoneCase(true);
+                var noneCase2 = new NoneCase(true);
 
                 // Act
-                var lIsEqual = object.Equals(lNoneCase, lNoneCase2);
+                var isEqual = object.Equals(noneCase, noneCase2);
 
                 // Assert
-                lIsEqual.ShouldBeTrue();
+                isEqual.ShouldBeTrue();
             }
 
             [Fact]
             public void BothNotNoneCase_ReturnsTrue()
             {
                 // Arrange
-                var lNoneCase = new NoneCase(false);
-                var lNoneCase2 = new NoneCase(false);
+                var noneCase = new NoneCase(false);
+                var noneCase2 = new NoneCase(false);
 
                 // Act
-                var lIsEqual = object.Equals(lNoneCase, lNoneCase2);
+                var isEqual = object.Equals(noneCase, noneCase2);
 
                 // Assert
-                lIsEqual.ShouldBeTrue();
+                isEqual.ShouldBeTrue();
             }
 
             [Fact]
             public void NoneAndNotNoneCase_ReturnsFalse()
             {
                 // Arrange
-                var lNoneCase = new NoneCase(false);
-                var lNoneCase2 = new NoneCase(true);
+                var noneCase = new NoneCase(false);
+                var noneCase2 = new NoneCase(true);
 
                 // Act
-                var lIsEqual = object.Equals(lNoneCase, lNoneCase2);
+                var isEqual = object.Equals(noneCase, noneCase2);
 
                 // Assert
-                lIsEqual.ShouldBeFalse();
+                isEqual.ShouldBeFalse();
             }
         }
     }

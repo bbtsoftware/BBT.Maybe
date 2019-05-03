@@ -15,65 +15,65 @@
     public struct Maybe<T> : ISerializable, IEquatable<Maybe<T>>
         where T : class
     {
-        private readonly T mValue;
+        private readonly T value;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="Maybe{T}"/> struct.
         /// </summary>
-        /// <param name="aValueNullable">The potentially nullable value.</param>
-        internal Maybe(T aValueNullable)
+        /// <param name="value">The potentially nullable value.</param>
+        internal Maybe(T value)
         {
-            this.mValue = aValueNullable;
+            this.value = value;
         }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="Maybe{T}"/> struct.
         /// Constructor used for deserialization.
         /// </summary>
-        private Maybe(SerializationInfo aInfo, StreamingContext aContext)
+        private Maybe(SerializationInfo info, StreamingContext context)
         {
-            MaybeUtils.CheckArgumentNotNull(aInfo, nameof(aInfo));
-            this.mValue = MaybeUtils.GetDeserializedValue<T>(aInfo, nameof(this.mValue));
+            MaybeUtils.CheckArgumentNotNull(info, nameof(info));
+            this.value = MaybeUtils.GetDeserializedValue<T>(info, nameof(this.value));
         }
 
         /// <summary>
         /// Gets a value indicating whether <see cref="Maybe"/> has a value (true)
         /// or is representing the null case (false).
         /// </summary>
-        public bool HasValue => this.mValue != null;
+        public bool HasValue => this.value != null;
 
         /// <summary>
         /// Checks whether the operands are equal.
         /// </summary>
-        /// <param name="aA">Maybe to compare.</param>
-        /// <param name="aB">Maybe to compare.</param>
-        public static bool operator ==(Maybe<T> aA, Maybe<T> aB)
+        /// <param name="a">Maybe to compare.</param>
+        /// <param name="b">Maybe to compare.</param>
+        public static bool operator ==(Maybe<T> a, Maybe<T> b)
         {
-            return object.Equals(aA.mValue, aB.mValue);
+            return object.Equals(a.value, b.value);
         }
 
         /// <summary>
         /// Checks whether the operands are unequal.
         /// </summary>
-        /// <param name="aA">Maybe to compare.</param>
-        /// <param name="aB">Maybe to compare.</param>
-        public static bool operator !=(Maybe<T> aA, Maybe<T> aB)
+        /// <param name="a">Maybe to compare.</param>
+        /// <param name="b">Maybe to compare.</param>
+        public static bool operator !=(Maybe<T> a, Maybe<T> b)
         {
-            return !(aA == aB);
+            return a != b;
         }
 
         /// <summary>
-        /// Executes <paramref name="aDoAction"/> if value is not null.
+        /// Executes <paramref name="doAction"/> if value is not null.
         /// </summary>
-        /// <param name="aDoAction">The action which is performed if maybe is not none.</param>
+        /// <param name="doAction">The action which is performed if maybe is not none.</param>
         /// <returns>The none case.</returns>
-        public NoneCase Do(Action<T> aDoAction)
+        public NoneCase Do(Action<T> doAction)
         {
-            MaybeUtils.CheckArgumentNotNull(aDoAction, nameof(aDoAction));
+            MaybeUtils.CheckArgumentNotNull(doAction, nameof(doAction));
 
-            if (this.mValue != null)
+            if (this.value != null)
             {
-                aDoAction(this.mValue);
+                doAction(this.value);
                 return new NoneCase(false);
             }
 
@@ -81,59 +81,59 @@
         }
 
         /// <summary>
-        /// Gets the <see cref="Maybe{TResult}"/> of the projection function <paramref name="aFunc"/>.
+        /// Gets the <see cref="Maybe{TResult}"/> of the projection function <paramref name="func"/>.
         /// </summary>
         /// <typeparam name="TResult">The type of the projected result.</typeparam>
-        /// <param name="aFunc">The projection function.</param>
+        /// <param name="func">The projection function.</param>
         /// <returns>The projected maybe.</returns>
-        public Maybe<TResult> Some<TResult>(Func<T, TResult> aFunc)
+        public Maybe<TResult> Some<TResult>(Func<T, TResult> func)
             where TResult : class
         {
-            MaybeUtils.CheckArgumentNotNull(aFunc, nameof(aFunc));
+            MaybeUtils.CheckArgumentNotNull(func, nameof(func));
 
-            var lMaybe = Maybe.None<TResult>();
-            this.Do(aX => lMaybe = Maybe.Some(aFunc(aX)));
+            var maybe = Maybe.None<TResult>();
+            this.Do(x => maybe = Maybe.Some(func(x)));
 
-            return lMaybe;
+            return maybe;
         }
 
         /// <summary>
         /// Returns the value in case it is initialized.
         /// Otherwise throws an <see cref="InvalidOperationException"/>.
         /// </summary>
-        /// <param name="aMaybeParameterName">The maybe reference used in error message.</param>
-        /// <param name="aAdditionalMessage">Additional error message.</param>
+        /// <param name="maybeParameterName">The maybe reference used in error message.</param>
+        /// <param name="additionalMessage">Additional error message.</param>
         /// <returns>The value.</returns>
         public T ThrowExceptionIfNone(
-            string aMaybeParameterName,
-            string aAdditionalMessage = "")
+            string maybeParameterName,
+            string additionalMessage = "")
         {
-            return MaybeUtils.CheckParameterNotNull(this.mValue, aMaybeParameterName, aAdditionalMessage);
+            return MaybeUtils.CheckParameterNotNull(this.value, maybeParameterName, additionalMessage);
         }
 
         /// <summary>
         /// See <see cref="object.Equals(object)"/>.
         /// </summary>
-        /// <param name="aObj">The object to compare.</param>
+        /// <param name="obj">The object to compare.</param>
         /// <returns>True if equal, false otherwise.</returns>
-        public override bool Equals(object aObj)
+        public override bool Equals(object obj)
         {
-            if (!(aObj is Maybe<T>))
+            if (!(obj is Maybe<T>))
             {
                 return false;
             }
 
-            return this.Equals((Maybe<T>)aObj);
+            return this.Equals((Maybe<T>)obj);
         }
 
         /// <summary>
         /// See <see cref="IEquatable{T}.Equals(T)"/>.
         /// </summary>
-        /// <param name="aOther">The maybe to compare.</param>
+        /// <param name="other">The maybe to compare.</param>
         /// <returns>True if equal, false otherwise.</returns>
-        public bool Equals(Maybe<T> aOther)
+        public bool Equals(Maybe<T> other)
         {
-            return this == aOther;
+            return this == other;
         }
 
         /// <summary>
@@ -144,7 +144,7 @@
         {
             if (this.HasValue)
             {
-                this.mValue.GetHashCode();
+                this.value.GetHashCode();
             }
 
             return base.GetHashCode();
@@ -153,16 +153,16 @@
         /// <summary>
         /// See <see cref="ISerializable.GetObjectData"/>.
         /// </summary>
-        /// <param name="aInfo">The serialization info.</param>
-        /// <param name="aContext">The streaming context.</param>
-        public void GetObjectData(SerializationInfo aInfo, StreamingContext aContext)
+        /// <param name="info">The serialization info.</param>
+        /// <param name="context">The streaming context.</param>
+        public void GetObjectData(SerializationInfo info, StreamingContext context)
         {
-            if (aInfo == null)
+            if (info == null)
             {
-                throw new ArgumentNullException(nameof(aInfo));
+                throw new ArgumentNullException(nameof(info));
             }
 
-            aInfo.AddValue(nameof(this.mValue), this.mValue, typeof(T));
+            info.AddValue(nameof(this.value), this.value, typeof(T));
         }
 
         /// <summary>
@@ -173,7 +173,7 @@
         {
             if (this.HasValue)
             {
-                return this.mValue.ToString();
+                return this.value.ToString();
             }
 
             return string.Empty;
