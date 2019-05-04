@@ -35,7 +35,7 @@
         /// <param name="b">Maybe to compare.</param>
         public static bool operator !=(NoneCase a, NoneCase b)
         {
-            return a != b;
+            return !(a == b);
         }
 
         /// <summary>
