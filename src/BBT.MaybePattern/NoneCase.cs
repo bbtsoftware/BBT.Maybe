@@ -55,11 +55,7 @@
             }
         }
 
-        /// <summary>
-        /// See <see cref="object.Equals(object)"/>.
-        /// </summary>
-        /// <param name="obj">The object to compare.</param>
-        /// <returns>True if equal, false otherwise.</returns>
+        /// <inheritdoc/>
         public override bool Equals(object obj)
         {
             if (!(obj is NoneCase))
@@ -70,20 +66,13 @@
             return this.Equals((NoneCase)obj);
         }
 
-        /// <summary>
-        /// See <see cref="IEquatable{T}.Equals(T)"/>.
-        /// </summary>
-        /// <param name="other">The maybe to compare.</param>
-        /// <returns>True if equal, false otherwise.</returns>
+        /// <inheritdoc/>
         public bool Equals(NoneCase other)
         {
             return this == other;
         }
 
-        /// <summary>
-        /// See <see cref="object.GetHashCode()"/>.
-        /// </summary>
-        /// <returns>The hash code.</returns>
+        /// <inheritdoc/>
         public override int GetHashCode() => this.isNone.GetHashCode();
     }
 }

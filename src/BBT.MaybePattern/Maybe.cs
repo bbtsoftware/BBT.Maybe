@@ -112,11 +112,7 @@
             return MaybeUtils.CheckParameterNotNull(this.value, maybeParameterName, additionalMessage);
         }
 
-        /// <summary>
-        /// See <see cref="object.Equals(object)"/>.
-        /// </summary>
-        /// <param name="obj">The object to compare.</param>
-        /// <returns>True if equal, false otherwise.</returns>
+        /// <inheritdoc/>
         public override bool Equals(object obj)
         {
             if (!(obj is Maybe<T>))
@@ -127,20 +123,13 @@
             return this.Equals((Maybe<T>)obj);
         }
 
-        /// <summary>
-        /// See <see cref="IEquatable{T}.Equals(T)"/>.
-        /// </summary>
-        /// <param name="other">The maybe to compare.</param>
-        /// <returns>True if equal, false otherwise.</returns>
+        /// <inheritdoc/>
         public bool Equals(Maybe<T> other)
         {
             return this == other;
         }
 
-        /// <summary>
-        /// See <see cref="object.GetHashCode()"/>.
-        /// </summary>
-        /// <returns>The hash code.</returns>
+        /// <inheritdoc/>
         public override int GetHashCode()
         {
             if (this.HasValue)
@@ -151,20 +140,13 @@
             return base.GetHashCode();
         }
 
-        /// <summary>
-        /// See <see cref="ISerializable.GetObjectData"/>.
-        /// </summary>
-        /// <param name="info">The serialization info.</param>
-        /// <param name="context">The streaming context.</param>
+        /// <inheritdoc/>
         public void GetObjectData(SerializationInfo info, StreamingContext context)
         {
             MaybeUtils.SetData(info, nameof(this.value), this.value);
         }
 
-        /// <summary>
-        /// See <see cref="object.ToString"/>.
-        /// </summary>
-        /// <returns>The string representation.</returns>
+        /// <inheritdoc/>
         public override string ToString()
         {
             if (this.HasValue)
