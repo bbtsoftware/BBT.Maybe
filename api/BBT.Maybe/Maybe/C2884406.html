@@ -57,7 +57,7 @@
                     <div class="collapse navbar-collapse pull-left" id="navbar-collapse">
                         <ul class="nav navbar-nav">                            
                                     <li><a href="/BBT.Maybe/docs">Documentation</a></li>
-        <li class="active"><a href="/BBT.Maybe/api">API</a></li>
+        <li class="active"><a href="/BBT.Maybe/api/BBT.Maybe">API</a></li>
  
                         </ul>       
                     </div>
@@ -184,7 +184,7 @@
 		</div>
 
 	<h1 id="Syntax">Syntax</h1>
-	<pre><code>public static MaybeStruct&lt;T&gt; SomeStruct&lt;T&gt;(T? aValue) where T : struct</code></pre>
+	<pre><code>public static MaybeStruct&lt;T&gt; SomeStruct&lt;T&gt;(T? value) where T : struct</code></pre>
 
 
 
@@ -219,7 +219,7 @@
 					</tr>
 				</thead>
 					<tbody><tr>
-						<td>aValue</td>
+						<td>value</td>
 						<td>T?</td>
 						<td>The value which may be null.</td>
 					</tr>

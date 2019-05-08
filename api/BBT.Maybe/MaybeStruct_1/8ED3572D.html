@@ -57,7 +57,7 @@
                     <div class="collapse navbar-collapse pull-left" id="navbar-collapse">
                         <ul class="nav navbar-nav">                            
                                     <li><a href="/BBT.Maybe/docs">Documentation</a></li>
-        <li class="active"><a href="/BBT.Maybe/api">API</a></li>
+        <li class="active"><a href="/BBT.Maybe/api/BBT.Maybe">API</a></li>
  
                         </ul>       
                     </div>
@@ -172,7 +172,7 @@
 	
 		<h1 id="Summary">Summary</h1>
 	<div class="lead">
-    Gets the <code class="cs"><a href="/BBT.Maybe/api/BBT.Maybe/Maybe_1">Maybe&lt;T&gt;</a></code> of the projection function <span name="aFunc" class="paramref">aFunc</span>.
+    Gets the <code class="cs"><a href="/BBT.Maybe/api/BBT.Maybe/Maybe_1">Maybe&lt;T&gt;</a></code> of the projection function <span name="func" class="paramref">func</span>.
     </div>
 
 		<div class="panel panel-default">
@@ -190,7 +190,7 @@
 		</div>
 
 	<h1 id="Syntax">Syntax</h1>
-	<pre><code>public MaybeStruct&lt;TResult&gt; Some&lt;TResult&gt;(Func&lt;T, TResult?&gt; aFunc) where TResult : struct</code></pre>
+	<pre><code>public MaybeStruct&lt;TResult&gt; Some&lt;TResult&gt;(Func&lt;T, TResult?&gt; func) where TResult : struct</code></pre>
 
 
 
@@ -225,7 +225,7 @@
 					</tr>
 				</thead>
 					<tbody><tr>
-						<td>aFunc</td>
+						<td>func</td>
 						<td>Func<wbr>&lt;<a href="/BBT.Maybe/api/BBT.Maybe/MaybeStruct_1#typeparam-T">T</a>, <wbr>TResult?&gt;<wbr></td>
 						<td>The projection function.</td>
 					</tr>
