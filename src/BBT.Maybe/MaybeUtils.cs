@@ -66,7 +66,23 @@
             SerializationInfo info,
             string key)
         {
+            CheckArgumentNotNull(info, nameof(info));
+
             return (T)info.GetValue(key, typeof(T));
+        }
+
+        /// <summary>
+        /// Sets <paramref name="data"/> to serialization info.
+        /// </summary>
+        /// <typeparam name="T">The data's type.</typeparam>
+        /// <param name="info">The serialization info.</param>
+        /// <param name="key">The data's key.</param>
+        /// <param name="data">The data.</param>
+        internal static void SetData<T>(SerializationInfo info, string key, T data)
+        {
+            MaybeUtils.CheckArgumentNotNull(info, nameof(info));
+
+            info.AddValue(key, data, typeof(T));
         }
     }
 }

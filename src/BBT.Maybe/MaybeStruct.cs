@@ -30,9 +30,10 @@
         /// Initializes a new instance of the <see cref="MaybeStruct{T}"/> struct.
         /// Constructor used for deserialization.
         /// </summary>
-        private MaybeStruct(SerializationInfo info, StreamingContext context)
+        /// <param name="info">The serialization info.</param>
+        /// <param name="context">The streaming context.</param>
+        internal MaybeStruct(SerializationInfo info, StreamingContext context)
         {
-            MaybeUtils.CheckArgumentNotNull(info, nameof(info));
             this.value = MaybeUtils.GetDeserializedValue<T>(info, nameof(this.value));
         }
 
@@ -59,7 +60,7 @@
         /// <param name="b">Maybe to compare.</param>
         public static bool operator !=(MaybeStruct<T> a, MaybeStruct<T> b)
         {
-            return a != b;
+            return !(a == b);
         }
 
         /// <summary>
@@ -145,7 +146,7 @@
         {
             if (this.value != null)
             {
-                this.value.GetHashCode();
+                return this.value.GetHashCode();
             }
 
             return base.GetHashCode();
@@ -158,9 +159,7 @@
         /// <param name="context">The streaming context.</param>
         public void GetObjectData(SerializationInfo info, StreamingContext context)
         {
-            MaybeUtils.CheckArgumentNotNull(info, nameof(info));
-
-            info.AddValue(nameof(this.value), this.value, typeof(T));
+            MaybeUtils.SetData(info, nameof(this.value), this.value);
         }
 
         /// <summary>

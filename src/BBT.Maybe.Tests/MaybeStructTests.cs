@@ -1,5 +1,7 @@
 ﻿namespace BBT.Maybe.Tests
 {
+    using System;
+    using System.Runtime.Serialization;
     using BBT.Maybe;
     using BBT.Maybe.Tests.TestData;
     using Shouldly;
@@ -7,10 +9,86 @@
 
     public sealed class MaybeStructTests
     {
-        public sealed class TheSomeStructMethod
+        public sealed class TheConstructor
         {
             [Fact]
-            public void ProjectToReferencingClass_ShouldReturnMaybeReferencingClass()
+            public void Should_Set_Value_If_Argument_Is_Not_Null()
+            {
+                // Arrange
+                var baseStruct = new BaseStruct();
+                var maybe = new MaybeStruct<BaseStruct>(baseStruct);
+
+                // Act & Assert
+                maybe.HasValue.ShouldBeTrue();
+                var value = maybe.ThrowExceptionIfNone(nameof(maybe));
+                value.ShouldBe(baseStruct);
+            }
+
+            [Fact]
+            public void Should_Set_Value_To_Null_If_Argument_Is_Null()
+            {
+                // Arrange
+                var maybe = new MaybeStruct<BaseStruct>(null);
+
+                // Act & Assert
+                maybe.HasValue.ShouldBeFalse();
+            }
+
+            [Fact]
+            public void Should_Throw_ArgumentNullException_If_SerializationInfo_Is_Null()
+            {
+                // Arrange & Act
+                var exception = Record.Exception(() => new MaybeStruct<BaseStruct>(null, default(StreamingContext)));
+
+                // Assert
+                exception.ShouldBeOfType<ArgumentNullException>();
+            }
+
+            [Fact]
+            public void Should_Set_Value_If_SerializationInfo_Contains_Value()
+            {
+                // Arrange
+                var baseStruct = new BaseStruct();
+                var serializationInfo = new SerializationInfo(typeof(MaybeStruct<>), new FormatterConverter());
+                serializationInfo.AddValue("value", baseStruct, typeof(BaseStruct));
+
+                // Act
+                var maybe = new MaybeStruct<BaseStruct>(serializationInfo, default(StreamingContext));
+
+                // Assert
+                maybe.HasValue.ShouldBeTrue();
+                var value = maybe.ThrowExceptionIfNone(nameof(maybe));
+                value.ShouldBe(baseStruct);
+            }
+        }
+
+        public sealed class TheHasValueMethod
+        {
+            [Fact]
+            public void Should_Return_True_If_Called_For_Some_Maybe()
+            {
+                // Arrange
+                var someMaybe = Maybe.SomeStruct<BaseStruct>(default(BaseStruct));
+
+                // Act & Assert
+                someMaybe.HasValue.ShouldBeTrue();
+            }
+
+            [Fact]
+            public void Should_Return_False_If_Called_For_None_Maybe()
+            {
+                // Arrange
+                var someMaybe = Maybe.NoneStruct<BaseStruct>();
+
+                // Act & Assert
+                someMaybe.HasValue.ShouldBeFalse();
+            }
+        }
+
+        public sealed class TheSomeMethod
+        {
+            [Fact]
+            public void Called_With_Projection_Func_To_Not_Null_Referencing_Struct_Should_Return_Some_Maybe_Of_Type_Referencing_Struct()
             {
                 // Arrange
                 var referencedStruct = default(ReferencedStruct);
@@ -26,7 +104,7 @@
             }
 
             [Fact]
-            public void None_ShouldReturnMaybeNone()
+            public void Called_With_Projection_Func_To_Null_Referencing_Struct_Should_Return_None_Maybe_Of_Type_Referencing_Struct()
             {
                 // Arrange
                 var maybeReferencedStruct = Maybe.NoneStruct<ReferencedStruct>();
@@ -42,7 +120,7 @@
         public sealed class TheDoMethod
         {
             [Fact]
-            public void MaybeValueNotSet_ActionNotCalled()
+            public void Should_Not_Call_Function_If_Maybe_Is_None()
             {
                 // Arrange
                 var maybeNone = Maybe.NoneStruct<BaseStruct>();
@@ -59,7 +137,7 @@
             /// Test that <see cref="Maybe{T}.Do"/> does call delegate if maybe represents not-null case.
             /// </summary>
             [Fact]
-            public void MaybeValueSet_ActionCalled()
+            public void Should_Call_Function_If_Maybe_Is_Some()
             {
                 // Arrange
                 var maybeNone = Maybe.SomeStruct<BaseStruct>(default(BaseStruct));
@@ -76,7 +154,7 @@
         public sealed class TheDoIfNoneMethod
         {
             [Fact]
-            public void MaybeValueNotSet_DoIfNoneActionCalled()
+            public void Should_Call_Action_If_Maybe_Is_None()
             {
                 // Arrange
                 var maybeNone = Maybe.NoneStruct<BaseStruct>();
@@ -90,7 +168,7 @@
             }
 
             [Fact]
-            public void MaybeValueSet_ActionNotCalled()
+            public void Should_Not_Call_Action_If_Maybe_Is_Some()
             {
                 // Arrange
                 var maybeNone = Maybe.SomeStruct<BaseStruct>(default(BaseStruct));
@@ -107,7 +185,7 @@
         public sealed class TheEqualsMethod
         {
             [Fact]
-            public void BothNone_ReturnsTrue()
+            public void Should_Return_True_If_Both_Are_None_Mabye_And_Of_Same_Type()
             {
                 // Arrange
                 var maybeNone = Maybe.NoneStruct<BaseStruct>();
@@ -121,7 +199,7 @@
             }
 
             [Fact]
-            public void BothSameValue_ReturnsTrue()
+            public void Should_Return_True_If_Both_Mabye_Are_Of_Same_Type_Represent_Equal_Struct()
             {
                 // Arrange
                 var baseStruct = default(BaseStruct);
@@ -136,7 +214,7 @@
             }
 
             [Fact]
-            public void NoneAndNotNone_ReturnsFalse()
+            public void Should_Return_False_If_One_Is_Some_And_Other_Is_None_Maybe()
             {
                 // Arrange
                 var baseStruct = default(BaseStruct);
@@ -148,6 +226,192 @@
 
                 // Assert
                 isEqual.ShouldBeFalse();
+            }
+        }
+
+        public sealed class TheThrowExceptionIfNoneMethod
+        {
+            [Fact]
+            public void Should_Throw_InvalidOperationException_If_Called_For_None_Mabye()
+            {
+                // Arrange
+                var maybeNone = Maybe.NoneStruct<BaseStruct>();
+
+                // Act
+                var exception = Record.Exception(() => maybeNone.ThrowExceptionIfNone(nameof(maybeNone)));
+
+                // Assert
+                exception.ShouldBeOfType<InvalidOperationException>();
+                exception.Message.ShouldContain(nameof(maybeNone));
+            }
+
+            [Fact]
+            public void Should_Return_Value_If_Called_For_Some_Mabye()
+            {
+                // Arrange
+                var baseStruct = default(BaseStruct);
+                var maybeNone = Maybe.SomeStruct<BaseStruct>(baseStruct);
+
+                // Act
+                var result = maybeNone.ThrowExceptionIfNone(nameof(maybeNone));
+
+                // Assert
+                result.ShouldBe(baseStruct);
+            }
+        }
+
+        public sealed class TheNotEqualOperator
+        {
+            [Fact]
+            public void Should_Return_False_If_Both_Are_None_Mabye_And_Of_Same_Type()
+            {
+                // Arrange
+                var maybeNone = Maybe.NoneStruct<BaseStruct>();
+                var maybeNone2 = Maybe.NoneStruct<BaseStruct>();
+
+                // Act
+                var isNotEqual = maybeNone != maybeNone2;
+
+                // Assert
+                isNotEqual.ShouldBeFalse();
+            }
+
+            [Fact]
+            public void Should_Return_False_If_Both_Are_Some_Mabye_And_Of_Same_Type()
+            {
+                // Arrange
+                var baseStruct = default(BaseStruct);
+                var maybeNone = Maybe.SomeStruct<BaseStruct>(baseStruct);
+                var maybeNone2 = Maybe.SomeStruct<BaseStruct>(baseStruct);
+
+                // Act
+                var isNotEqual = maybeNone != maybeNone2;
+
+                // Assert
+                isNotEqual.ShouldBeFalse();
+            }
+
+            [Fact]
+            public void Should_Return_True_If_Mabyes_Are_Of_Same_Type_But_Represent_Different_Values()
+            {
+                // Arrange
+                var baseStruct = default(BaseStruct);
+                var baseStruct2 = new BaseStruct("other");
+                var maybeNone = Maybe.SomeStruct<BaseStruct>(baseStruct);
+                var maybeNone2 = Maybe.SomeStruct<BaseStruct>(baseStruct2);
+
+                // Act
+                var isNotEqual = maybeNone != maybeNone2;
+
+                // Assert
+                isNotEqual.ShouldBeTrue();
+            }
+
+            [Fact]
+            public void Should_Return_True_If_One_Is_Some_And_Other_Is_None_Maybe()
+            {
+                // Arrange
+                var baseStruct = default(BaseStruct);
+                var maybeNone = Maybe.SomeStruct<BaseStruct>(baseStruct);
+                var maybeNone2 = Maybe.NoneStruct<BaseStruct>();
+
+                // Act
+                var isNotEqual = maybeNone != maybeNone2;
+
+                // Assert
+                isNotEqual.ShouldBeTrue();
+            }
+        }
+
+        public sealed class TheGetHashCodeMethod
+        {
+            [Fact]
+            public void Should_Return_HashCode_Of_Value_If_Some()
+            {
+                // Arrange
+                var baseStruct = new BaseStruct();
+                var maybe = Maybe.SomeStruct<BaseStruct>(baseStruct);
+
+                // Act
+                var hashCode = maybe.GetHashCode();
+
+                // Assert
+                hashCode.ShouldBe(baseStruct.GetHashCode());
+            }
+
+            [Fact]
+            public void Should_Return_HashCode_Of_Base_If_None()
+            {
+                // Arrange
+                var maybe = Maybe.NoneStruct<BaseStruct>();
+
+                // Act
+                var hashCode = maybe.GetHashCode();
+
+                // Assert
+                hashCode.ShouldBe(((object)maybe).GetHashCode());
+            }
+        }
+
+        public sealed class TheGetObjectDataMethod
+        {
+            [Fact]
+            public void Should_Throw_ArgumentNullException_If_SerializationInfo_Is_Null()
+            {
+                // Arrange
+                var maybe = Maybe.NoneStruct<BaseStruct>();
+
+                // Act
+                var exception = Record.Exception(() => maybe.GetObjectData(null, default(StreamingContext)));
+
+                // Assert
+                exception.ShouldBeOfType<ArgumentNullException>();
+            }
+
+            [Fact]
+            public void Should_Add_Value_To_SerializationInfo()
+            {
+                // Arrange
+                var baseStruct = new BaseStruct();
+                var maybe = Maybe.SomeStruct<BaseStruct>(baseStruct);
+                var serializationInfo = new SerializationInfo(typeof(Maybe<>), new FormatterConverter());
+
+                // Act
+                maybe.GetObjectData(serializationInfo, default(StreamingContext));
+
+                // Assert
+                var value = serializationInfo.GetValue("value", typeof(BaseStruct));
+                value.ShouldBe(baseStruct);
+            }
+        }
+
+        public sealed class TheToStringMethod
+        {
+            [Fact]
+            public void Should_Return_String_Representation_Of_Value_If_Some()
+            {
+                // Arrange
+                var baseStruct = new BaseStruct();
+                var maybe = Maybe.SomeStruct<BaseStruct>(baseStruct);
+
+                // Act
+                var stringRepresentation = maybe.ToString();
+
+                // Assert
+                stringRepresentation.ShouldBe(baseStruct.ToString());
+            }
+
+            [Fact]
+            public void Should_Return_Emptry_String_If_None()
+            {
+                // Arrange
+                var maybe = Maybe.NoneStruct<BaseStruct>();
+
+                // Act
+                var stringRepresentation = maybe.ToString();
+
+                // Assert
+                stringRepresentation.ShouldBe(string.Empty);
             }
         }
     }
