@@ -1,5 +1,11 @@
 #load nuget:?package=Cake.Recipe&version=1.0.0
 
+#tool nuget:?package=inheritdoc&version=2.2.0
+
+//////////////////////////////////////////////////////////////////////
+// PARAMETERS
+//////////////////////////////////////////////////////////////////////
+
 Environment.SetVariableNames();
 
 BuildParameters.SetParameters(
@@ -22,5 +28,30 @@ ToolSettings.SetToolSettings(
     testCoverageFilter: "+[*]* -[xunit.*]* -[*.Tests]* -[Shouldly]*",
     testCoverageExcludeByAttribute: "*.ExcludeFromCodeCoverage*",
     testCoverageExcludeByFile: "*/*Designer.cs;*/*.g.cs;*/*.g.i.cs");
+
+//////////////////////////////////////////////////////////////////////
+// CUSTOM TASKS
+//////////////////////////////////////////////////////////////////////
+
+Task("Rewrite-Inheritdoc")
+    .IsDependentOn("DotNetCore-Build")
+    .Does(() =>
+{
+    var sourceDirectory = MakeAbsolute(Directory("./")).Combine("src");
+    StartProcess(
+        "./tools/InheritDoc.2.2.0/tools/InheritDoc.exe",
+        new ProcessSettings
+        {
+            Arguments = "-f BBT.Maybe.* -b " + sourceDirectory.FullPath + " -o",
+            WorkingDirectory = sourceDirectory.FullPath
+        });
+});
+
+BuildParameters.Tasks.CreateNuGetPackagesTask
+    .IsDependentOn("Rewrite-Inheritdoc");
+
+//////////////////////////////////////////////////////////////////////
+// EXECUTION
+//////////////////////////////////////////////////////////////////////
 
 Build.RunDotNetCore();
