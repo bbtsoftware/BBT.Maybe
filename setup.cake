@@ -6,7 +6,7 @@ BuildParameters.SetParameters(
     context: Context, 
     buildSystem: BuildSystem,
     sourceDirectoryPath: "./src",
-    title: "BBT.MaybePattern",
+    title: "BBT.Maybe",
     repositoryOwner: "bbtsoftware",
     repositoryName: "BBT.Maybe",
     appVeyorAccountName: "BBTSoftwareAG",
@@ -18,7 +18,7 @@ BuildParameters.PrintParameters(Context);
 
 ToolSettings.SetToolSettings(
     context: Context,
-    dupFinderExcludePattern: new string[] { BuildParameters.RootDirectoryPath + "/src/BBT.MaybePattern.Tests/*.cs" },
+    dupFinderExcludePattern: new string[] { BuildParameters.RootDirectoryPath + "/src/BBT.Maybe.Tests/*.cs" },
     testCoverageFilter: "+[*]* -[xunit.*]* -[*.Tests]* -[Shouldly]*",
     testCoverageExcludeByAttribute: "*.ExcludeFromCodeCoverage*",
     testCoverageExcludeByFile: "*/*Designer.cs;*/*.g.cs;*/*.g.i.cs");

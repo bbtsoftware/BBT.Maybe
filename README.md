@@ -1,15 +1,15 @@
-# BBT.MaybePattern
+# BBT.Maybe
 
 An option type for .NET.
 
-[![License](http://img.shields.io/:license-mit-blue.svg)](https://github.com/bbtsoftware/BBT.MaybePattern/blob/master/LICENSE)
+[![License](http://img.shields.io/:license-mit-blue.svg)](https://github.com/bbtsoftware/BBT.Maybe/blob/master/LICENSE)
 
 ## Information
 
 | | Stable | Pre-release |
 |:--:|:--:|:--:|
-|GitHub Release|-|[![GitHub release](https://img.shields.io/github/release/bbtsoftware/BBT.MaybePattern.svg)](https://github.com/bbtsoftware/BBT.MaybePattern/releases/latest)|
-|NuGet|[![NuGet](https://img.shields.io/nuget/v/BBT.MaybePattern.svg)](https://www.nuget.org/packages/BBT.MaybePattern)|[![NuGet](https://img.shields.io/nuget/vpre/BBT.MaybePattern.svg)](https://www.nuget.org/packages/BBT.MaybePattern)|
+|GitHub Release|-|[![GitHub release](https://img.shields.io/github/release/bbtsoftware/BBT.Maybe.svg)](https://github.com/bbtsoftware/BBT.Maybe/releases/latest)|
+|NuGet|[![NuGet](https://img.shields.io/nuget/v/BBT.Maybe.svg)](https://www.nuget.org/packages/BBT.Maybe)|[![NuGet](https://img.shields.io/nuget/vpre/BBT.Maybe.svg)](https://www.nuget.org/packages/BBT.Maybe)|
 
 ## Build Status
 
@@ -19,11 +19,11 @@ An option type for .NET.
 
 ## Code Coverage
 
-[![Coverage Status](https://coveralls.io/repos/github/bbtsoftware/BBT.MaybePattern/badge.svg?branch=develop)](https://coveralls.io/github/bbtsoftware/BBT.MaybePattern?branch=develop)
+[![Coverage Status](https://coveralls.io/repos/github/bbtsoftware/BBT.Maybe/badge.svg?branch=develop)](https://coveralls.io/github/bbtsoftware/BBT.Maybe?branch=develop)
 
 ## Quick Links
 
-* [Documentation](https://bbtsoftware.github.io/BBT.MaybePattern/)
+* [Documentation](https://bbtsoftware.github.io/BBT.Maybe/)
 
 ## Build
 
