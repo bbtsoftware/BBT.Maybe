@@ -8,7 +8,7 @@
     <Product>BBT.MaybePattern</Product>
     <Description>Tests for BBT.MaybePattern</Description>
     <Copyright>Copyright © BBT Software AG</Copyright>
-    <CodeAnalysisRuleSet>..\BBT.MaybePattern.Tests.ruleset</CodeAnalysisRuleSet>
+    <CodeAnalysisRuleSet>..\BBT.Maybe.Tests.ruleset</CodeAnalysisRuleSet>
     <OutputPath>bin\$(Configuration)\</OutputPath>
   </PropertyGroup>
 
