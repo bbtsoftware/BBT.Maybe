@@ -3,10 +3,10 @@
   <PropertyGroup>
     <TargetFramework>netcoreapp2.1</TargetFramework>
     <IsPackable>false</IsPackable>
-    <AssemblyTitle>BBT.Maybe.Tests</AssemblyTitle>
+    <AssemblyTitle>BBT.MaybePattern.Tests</AssemblyTitle>
     <Company>BBT Software AG</Company>
-    <Product>BBT.Maybe</Product>
-    <Description>Tests for Bbt.Maybe</Description>
+    <Product>BBT.MaybePattern</Product>
+    <Description>Tests for BBT.MaybePattern</Description>
     <Copyright>Copyright © BBT Software AG</Copyright>
     <CodeAnalysisRuleSet>..\BBT.Maybe.Tests.ruleset</CodeAnalysisRuleSet>
     <OutputPath>bin\$(Configuration)\</OutputPath>
@@ -29,7 +29,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Bbt.Maybe\BBT.Maybe.csproj" />
+    <ProjectReference Include="..\BBT.MaybePattern\BBT.MaybePattern.csproj" />
   </ItemGroup>
 
 </Project>

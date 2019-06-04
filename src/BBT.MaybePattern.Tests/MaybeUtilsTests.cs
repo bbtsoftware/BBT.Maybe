@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Runtime.Serialization;
-using BBT.Maybe.Tests.TestData;
+using BBT.MaybePattern.Tests.TestData;
 using Shouldly;
 using Xunit;
 
-namespace BBT.Maybe.Tests
+namespace BBT.MaybePattern.Tests
 {
     public sealed class MaybeUtilsTests
     {
