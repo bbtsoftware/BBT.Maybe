@@ -1,4 +1,4 @@
-﻿namespace BBT.Maybe
+﻿namespace BBT.MaybePattern
 {
     using System;
 

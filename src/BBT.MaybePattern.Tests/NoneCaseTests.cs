@@ -1,8 +1,8 @@
-﻿namespace BBT.Maybe.Tests
+﻿namespace BBT.MaybePattern.Tests
 {
     using System;
-    using BBT.Maybe;
-    using BBT.Maybe.Tests.TestData;
+    using BBT.MaybePattern;
+    using BBT.MaybePattern.Tests.TestData;
     using Shouldly;
     using Xunit;
 

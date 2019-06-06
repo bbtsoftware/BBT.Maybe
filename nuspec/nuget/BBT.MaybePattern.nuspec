@@ -18,8 +18,8 @@
     <releaseNotes>https://github.com/bbtsoftware/BBT.Maybe/releases/tag/1.0.0</releaseNotes>
   </metadata>
   <files>
-    <file src="netstandard2.0\BBT.Maybe.dll" target="lib\netstandard2.0" />
-    <file src="netstandard2.0\BBT.Maybe.pdb" target="lib\netstandard2.0" />
-    <file src="netstandard2.0\BBT.Maybe.xml" target="lib\netstandard2.0" />
+    <file src="netstandard2.0\BBT.MaybePattern.dll" target="lib\netstandard2.0" />
+    <file src="netstandard2.0\BBT.MaybePattern.pdb" target="lib\netstandard2.0" />
+    <file src="netstandard2.0\BBT.MaybePattern.xml" target="lib\netstandard2.0" />
   </files>
 </package>
