@@ -3,12 +3,12 @@
   <PropertyGroup>
     <TargetFramework>netcoreapp2.1</TargetFramework>
     <IsPackable>false</IsPackable>
-    <AssemblyTitle>Bbt.Maybe</AssemblyTitle>
+    <AssemblyTitle>BBT.MaybePattern.Tests</AssemblyTitle>
     <Company>BBT Software AG</Company>
-    <Product>Bbt.Maybe</Product>
-    <Description>Tests for Bbt.Maybe</Description>
+    <Product>BBT.Maybe</Product>
+    <Description>Tests for BBT.MaybePattern</Description>
     <Copyright>Copyright © BBT Software AG</Copyright>
-    <CodeAnalysisRuleSet>..\Bbt.Maybe.Tests.ruleset</CodeAnalysisRuleSet>
+    <CodeAnalysisRuleSet>..\BBT.MaybePattern.Tests.ruleset</CodeAnalysisRuleSet>
     <OutputPath>bin\$(Configuration)\</OutputPath>
   </PropertyGroup>
 
@@ -20,7 +20,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.0.1" />
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.1.1" />
     <PackageReference Include="Shouldly" Version="4.0.0-beta0001" />
     <PackageReference Include="xunit" Version="2.4.1" />
     <PackageReference Include="xunit.runner.visualstudio" Version="2.4.1">
@@ -29,7 +29,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Bbt.Maybe\BBT.Maybe.csproj" />
+    <ProjectReference Include="..\BBT.MaybePattern\BBT.MaybePattern.csproj" />
   </ItemGroup>
 
 </Project>

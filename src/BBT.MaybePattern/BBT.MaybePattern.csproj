@@ -2,13 +2,13 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
-    <AssemblyTitle>BBT.Maybe</AssemblyTitle>
+    <AssemblyTitle>BBT.MaybePattern</AssemblyTitle>
     <Company>BBT Software AG</Company>
     <Product>BBT.Maybe</Product>
     <Description>An option type for .NET</Description>
     <Copyright>Copyright © BBT Software AG</Copyright>
-    <CodeAnalysisRuleSet>..\Bbt.Maybe.ruleset</CodeAnalysisRuleSet>
-    <DocumentationFile>bin\$(Configuration)\Bbt.Maybe.XML</DocumentationFile>
+    <CodeAnalysisRuleSet>..\BBT.MaybePattern.ruleset</CodeAnalysisRuleSet>
+    <DocumentationFile>bin\$(Configuration)\BBT.MaybePattern.XML</DocumentationFile>
     <OutputPath>bin\$(Configuration)\</OutputPath>
     <DebugSymbols>true</DebugSymbols>
   </PropertyGroup>
@@ -25,7 +25,7 @@
     <PackageReference Include="Microsoft.CodeAnalysis.FxCopAnalyzers" Version="2.9.2">
       <PrivateAssets>all</PrivateAssets>
     </PackageReference>
-    <PackageReference Include="StyleCop.Analyzers" Version="1.1.0-beta009">
+    <PackageReference Include="StyleCop.Analyzers" Version="1.1.118">
       <PrivateAssets>all</PrivateAssets>
     </PackageReference>
   </ItemGroup>

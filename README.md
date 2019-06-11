@@ -19,7 +19,7 @@ An option type for .NET.
 
 ## Code Coverage
 
-[![Coverage Status](https://coveralls.io/repos/github/BBTSoftwareAG/BBT.Maybe/badge.svg?branch=develop)](https://coveralls.io/github/BBTSoftwareAG/BBT.Maybe?branch=develop)
+[![Coverage Status](https://coveralls.io/repos/github/bbtsoftware/BBT.Maybe/badge.svg?branch=develop)](https://coveralls.io/github/bbtsoftware/BBT.Maybe?branch=develop)
 
 ## Quick Links
 

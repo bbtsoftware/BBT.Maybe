@@ -1,4 +1,4 @@
-﻿namespace BBT.Maybe
+﻿namespace BBT.MaybePattern
 {
     using System.Diagnostics.CodeAnalysis;
 
@@ -12,10 +12,10 @@
         /// Creates an instance of <see cref="Maybe{T}"/> which may be null.
         /// </summary>
         /// <typeparam name="T">The reference type.</typeparam>
-        /// <param name="aValue">The value which may be null.</param>
+        /// <param name="value">The value which may be null.</param>
         /// <returns>The maybe.</returns>
-        public static Maybe<T> Some<T>(T aValue)
-            where T : class => new Maybe<T>(aValue);
+        public static Maybe<T> Some<T>(T value)
+            where T : class => new Maybe<T>(value);
 
         /// <summary>
         /// Creates an instance of Type <typeparamref name="T"/> which is null.
@@ -29,10 +29,10 @@
         /// Creates an instance of <see cref="Maybe{T}"/> which may be null.
         /// </summary>
         /// <typeparam name="T">The reference type.</typeparam>
-        /// <param name="aValue">The value which may be null.</param>
+        /// <param name="value">The value which may be null.</param>
         /// <returns>The maybe.</returns>
-        public static MaybeStruct<T> SomeStruct<T>(T? aValue)
-            where T : struct => new MaybeStruct<T>(aValue);
+        public static MaybeStruct<T> SomeStruct<T>(T? value)
+            where T : struct => new MaybeStruct<T>(value);
 
         /// <summary>
         /// Creates an instance of Type <typeparamref name="T"/> which is null.
