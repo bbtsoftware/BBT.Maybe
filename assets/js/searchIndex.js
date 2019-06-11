@@ -39,14 +39,14 @@ var searchModule = function() {
     a(
         {
             id:0,
-            title:"MaybeStruct",
-            content:"MaybeStruct",
+            title:"Maybe",
+            content:"Maybe",
             description:'',
             tags:''
         },
         {
-            url:'/BBT.Maybe/api/BBT.MaybePattern/MaybeStruct_1',
-            title:"MaybeStruct<T>",
+            url:'/BBT.Maybe/api/BBT.MaybePattern/Maybe',
+            title:"Maybe",
             description:""
         }
     );
@@ -67,6 +67,20 @@ var searchModule = function() {
     a(
         {
             id:2,
+            title:"MaybeStruct",
+            content:"MaybeStruct",
+            description:'',
+            tags:''
+        },
+        {
+            url:'/BBT.Maybe/api/BBT.MaybePattern/MaybeStruct_1',
+            title:"MaybeStruct<T>",
+            description:""
+        }
+    );
+    a(
+        {
+            id:3,
             title:"NoneCase",
             content:"NoneCase",
             description:'',
@@ -75,20 +89,6 @@ var searchModule = function() {
         {
             url:'/BBT.Maybe/api/BBT.MaybePattern/NoneCase',
             title:"NoneCase",
-            description:""
-        }
-    );
-    a(
-        {
-            id:3,
-            title:"Maybe",
-            content:"Maybe",
-            description:'',
-            tags:''
-        },
-        {
-            url:'/BBT.Maybe/api/BBT.MaybePattern/Maybe',
-            title:"Maybe",
             description:""
         }
     );
