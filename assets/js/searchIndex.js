@@ -39,42 +39,42 @@ var searchModule = function() {
     a(
         {
             id:0,
-            title:"Maybe",
-            content:"Maybe",
-            description:'',
-            tags:''
-        },
-        {
-            url:'/BBT.Maybe/api/BBT.Maybe/Maybe',
-            title:"Maybe",
-            description:""
-        }
-    );
-    a(
-        {
-            id:1,
             title:"MaybeStruct",
             content:"MaybeStruct",
             description:'',
             tags:''
         },
         {
-            url:'/BBT.Maybe/api/BBT.Maybe/MaybeStruct_1',
+            url:'/BBT.Maybe/api/BBT.MaybePattern/MaybeStruct_1',
             title:"MaybeStruct<T>",
             description:""
         }
     );
     a(
         {
-            id:2,
+            id:1,
             title:"NoneCase",
             content:"NoneCase",
             description:'',
             tags:''
         },
         {
-            url:'/BBT.Maybe/api/BBT.Maybe/NoneCase',
+            url:'/BBT.Maybe/api/BBT.MaybePattern/NoneCase',
             title:"NoneCase",
+            description:""
+        }
+    );
+    a(
+        {
+            id:2,
+            title:"Maybe",
+            content:"Maybe",
+            description:'',
+            tags:''
+        },
+        {
+            url:'/BBT.Maybe/api/BBT.MaybePattern/Maybe',
+            title:"Maybe",
             description:""
         }
     );
@@ -87,7 +87,7 @@ var searchModule = function() {
             tags:''
         },
         {
-            url:'/BBT.Maybe/api/BBT.Maybe/Maybe_1',
+            url:'/BBT.Maybe/api/BBT.MaybePattern/Maybe_1',
             title:"Maybe<T>",
             description:""
         }
