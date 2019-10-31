@@ -39,14 +39,14 @@ var searchModule = function() {
     a(
         {
             id:0,
-            title:"Maybe",
-            content:"Maybe",
+            title:"NoneCase",
+            content:"NoneCase",
             description:'',
             tags:''
         },
         {
-            url:'/BBT.Maybe/api/BBT.MaybePattern/Maybe',
-            title:"Maybe",
+            url:'/BBT.Maybe/api/BBT.MaybePattern/NoneCase',
+            title:"NoneCase",
             description:""
         }
     );
@@ -59,8 +59,8 @@ var searchModule = function() {
             tags:''
         },
         {
-            url:'/BBT.Maybe/api/BBT.MaybePattern/Maybe_1',
-            title:"Maybe<T>",
+            url:'/BBT.Maybe/api/BBT.MaybePattern/Maybe',
+            title:"Maybe",
             description:""
         }
     );
@@ -81,14 +81,14 @@ var searchModule = function() {
     a(
         {
             id:3,
-            title:"NoneCase",
-            content:"NoneCase",
+            title:"Maybe",
+            content:"Maybe",
             description:'',
             tags:''
         },
         {
-            url:'/BBT.Maybe/api/BBT.MaybePattern/NoneCase',
-            title:"NoneCase",
+            url:'/BBT.Maybe/api/BBT.MaybePattern/Maybe_1',
+            title:"Maybe<T>",
             description:""
         }
     );
