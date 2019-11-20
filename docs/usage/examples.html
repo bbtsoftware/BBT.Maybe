@@ -1,21 +1,19 @@
-﻿<!DOCTYPE html>
-<html>
-    <head>
+﻿<!DOCTYPE html><html><head>
         <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
-        <meta name="description" />
-        <meta name="keywords" content="static content generator,static site generator,static site,HTML,web development,.NET,C#,Razor,Markdown,YAML" />
+        <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+        <meta name="description">
+        <meta name="keywords" content="static content generator,static site generator,static site,HTML,web development,.NET,C#,Razor,Markdown,YAML">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="shortcut icon" href="/BBT.Maybe/assets/img/favicon.ico" type="image/x-icon">
         <link rel="icon" href="/BBT.Maybe/assets/img/favicon.ico" type="image/x-icon">
-        <title>BBT.Maybe - Usage</title>
+        <title>BBT.Maybe - Examples</title>
         <link href="/BBT.Maybe/assets/css/highlight.css" rel="stylesheet">
-        <link href="/BBT.Maybe/assets/css/bootstrap/bootstrap.css" rel="stylesheet" />
-        <link href="/BBT.Maybe/assets/css/adminlte/AdminLTE.css" rel="stylesheet" />
-        <link href="/BBT.Maybe/assets/css/theme/theme.css" rel="stylesheet" />
+        <link href="/BBT.Maybe/assets/css/bootstrap/bootstrap.css" rel="stylesheet">
+        <link href="/BBT.Maybe/assets/css/adminlte/AdminLTE.css" rel="stylesheet">
+        <link href="/BBT.Maybe/assets/css/theme/theme.css" rel="stylesheet">
         <link href="//fonts.googleapis.com/css?family=Roboto+Mono:400,700|Roboto:400,400i,700,700i" rel="stylesheet">
         <link href="/BBT.Maybe/assets/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-        <link href="/BBT.Maybe/assets/css/override.css" rel="stylesheet" />
+        <link href="/BBT.Maybe/assets/css/override.css" rel="stylesheet">
         <script src="/BBT.Maybe/assets/js/jquery-2.2.3.min.js"></script>
         <script src="/BBT.Maybe/assets/js/bootstrap.min.js"></script>        
         <script src="/BBT.Maybe/assets/js/app.min.js"></script>         
@@ -73,7 +71,7 @@
             <aside class="main-sidebar ">
                 <section class="infobar" data-spy="affix" data-offset-top="60" data-offset-bottom="200"> 
                     	
-        <div><p><a href="https://github.com/bbtsoftware/BBT.Maybe/tree/develop/docs/input/docs/usage/index.cshtml"><i class="fa fa-pencil-square" aria-hidden="true"></i> Edit Content</a></p></div>
+        <div><p><a href="https://github.com/bbtsoftware/BBT.Maybe/tree/develop/docs/input/docs/usage/examples.md"><i class="fa fa-pencil-square" aria-hidden="true"></i> Edit Content</a></p></div>
     <div id="infobar-headings"></div>
 
                 </section>
@@ -93,12 +91,12 @@
 
                     </ul>
                 </li>
-                <li class="treeview active selected">
+                <li class="treeview active">
                     <a href="/BBT.Maybe/docs/usage">Usage</a> <a href="#" class="expand"></a>
                     <ul class="treeview-menu">
                         
                 <li><a href="/BBT.Maybe/docs/usage/obtain">Obtain</a></li>
-                <li><a href="/BBT.Maybe/docs/usage/examples">Examples</a></li>
+                <li class="selected"><a href="/BBT.Maybe/docs/usage/examples">Examples</a></li>
 
                     </ul>
                 </li>
@@ -115,30 +113,64 @@
 
 
 		<section class="content-header">
-			<h1>Usage</h1>
+			<h1>Examples</h1>
 		</section>
 	<section class="content">
-		<p>How to obtain, configure, and use BBT.Maybe.</p>
+		<h2 id="usage-of-factory-methods">Usage of factory methods</h2>
+<p>Maybe values are created using factory methods provided by Maybe. Methods with arguments for reference are available (<code>Maybe.Some&lt;T&gt;</code>).
+For the none case parameterless methods can be used (<code>Maybe.None&lt;T&gt;</code>).
+For nullable value types analogous methods postfixed with 'Struct' are provided.</p>
+<pre><code class="language-csharp">// Creation of a maybe for a declared reference type which could be instantiated or not.
+var foo = new Foo();
+var maybeFoo = Maybe.Some(foo);
 
-			<div class="box">
-				<div class="box-body no-padding">
-					<table class="table table-striped table-hover two-cols-alt table-responsive">
-						
-						<tbody>
-								<tr>
-									<td><strong><a href="/BBT.Maybe/docs/usage/obtain">Obtain</a></strong></td>
-									<td>
-Obtain BBT.Maybe									</td>
-								</tr>
-								<tr>
-									<td><strong><a href="/BBT.Maybe/docs/usage/examples">Examples</a></strong></td>
-									<td>
-Example usage of BBT.Maybe									</td>
-								</tr>
-						</tbody>				
-					</table>
-				</div>
-			</div> 
+// Creation of a maybe for a reference type which is null.
+var maybeFoo2 = Maybe.None&lt;Foo&gt;();
+
+// Creation of a maybe for a declared nullable value type which could be instantiated or not.
+int? number = 5;
+var maybeNumber = Maybe.SomeStruct&lt;int&gt;(number);
+
+// Creation of a maybe for a nullable value type which is null.
+var maybeNumber2 = Maybe.NoneStruct&lt;int&gt;();
+</code></pre>
+<h2 id="optional-properties">Optional properties</h2>
+<p>Maybe is useful for optional properties. The default implementation of maybe represents the null case, therefore optional properties of type <code><a href="/BBT.Maybe/api/BBT.MaybePattern/Maybe_1">Maybe&lt;T&gt;</a></code> are representing the null case too and must not be initialized.</p>
+<pre><code class="language-csharp">/// Data class with mandatory property Foo and optional property Bar. Default of Bar is null.
+public class Data()
+{
+    public Data(Foo foo)
+    {
+        Foo = foo;
+    }
+
+    public Foo { get; }
+    public Maybe&lt;Bar&gt; MaybeBar { get; set; }
+}
+</code></pre>
+<h2 id="optional-method-arguments">Optional method arguments</h2>
+<p>Maybe can be decalred as optional method arguments using the default keyword.</p>
+<pre><code class="language-csharp">/// Data class with mandatory property A and optional property B. Default of B is null.
+public void Foo(bool flag, Maybe&lt;A&gt; maybeA = default)
+{
+    ...
+}
+</code></pre>
+<h2 id="projection-method">Projection method</h2>
+<p>Maybe provides a projection method (Some method) with an argument of type Func&lt;T, TProjected&gt;.
+The usage is similar to the null propagation operator.</p>
+<pre><code class="language-csharp">/// Class foo contains optional property bar.
+public class Foo()
+{
+    public Bar { get; set; } = null;
+}
+</code></pre>
+<p>Usage of the maybe projection functionality:</p>
+<pre><code class="language-csharp">Maybe.Some(foo).Some(x =&gt; x.Bar).Do(x =&gt; ...);
+</code></pre>
+<p>Maybe.Some(foo) is the factory method call for the creation of the maybe of type Foo.
+The second call Some(x =&gt; x.Bar) is the projection method projecting the Foo maybe to a maybe of its property type Bar.
+Therefore projections of cascades of properties can be done without the need of null checks or null propagation.</p>
 
 	</section>
                 
@@ -152,8 +184,8 @@ Example usage of BBT.Maybe									</td>
         <div class="wrapper bottom-wrapper">
             <footer class="bottom-footer">
                 <p class="text-muted">
-    Copyright &copy; <a href="http://bbtsoftware.ch" target="_blank">BBT Software AG</a> and <a href="https://github.com/bbtsoftware/BBT.Maybe/graphs/contributors" target="_blank">contributors</a>.
-    <br/>
+    Copyright © <a href="http://bbtsoftware.ch" target="_blank">BBT Software AG</a> and <a href="https://github.com/bbtsoftware/BBT.Maybe/graphs/contributors" target="_blank">contributors</a>.
+    <br>
     Website generated by <a href="http://wyam.io" target="_blank">Wyam</a>
 </p>
 
@@ -280,5 +312,5 @@ Example usage of BBT.Maybe									</td>
                 }, 500);
             });
         </script>
-    </body>
-</html>
+    
+</body></html>
