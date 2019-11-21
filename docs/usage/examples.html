@@ -72,7 +72,11 @@
                 <section class="infobar" data-spy="affix" data-offset-top="60" data-offset-bottom="200"> 
                     	
         <div><p><a href="https://github.com/bbtsoftware/BBT.Maybe/tree/develop/docs/input/docs/usage/examples.md"><i class="fa fa-pencil-square" aria-hidden="true"></i> Edit Content</a></p></div>
-    <div id="infobar-headings"></div>
+    <div id="infobar-headings"><h6>On This Page</h6><p><a href="#usage-of-factory-methods">Usage of factory methods</a></p>
+<p><a href="#optional-properties">Optional properties</a></p>
+<p><a href="#projection-method">Projection method</a></p>
+<hr class="infobar-hidden">
+</div>
 
                 </section>
                 <section class="sidebar">    
@@ -116,7 +120,7 @@
 			<h1>Examples</h1>
 		</section>
 	<section class="content">
-		<h2 id="usage-of-factory-methods">Usage of factory methods</h2>
+		<h1 id="usage-of-factory-methods">Usage of factory methods</h1>
 <p>Maybe values are created using factory methods provided by Maybe. Methods with arguments for reference are available (<code>Maybe.Some&lt;T&gt;</code>).
 For the none case parameterless methods can be used (<code>Maybe.None&lt;T&gt;</code>).
 For nullable value types analogous methods postfixed with 'Struct' are provided.</p>
@@ -134,7 +138,7 @@ var maybeNumber = Maybe.SomeStruct&lt;int&gt;(number);
 // Creation of a maybe for a nullable value type which is null.
 var maybeNumber2 = Maybe.NoneStruct&lt;int&gt;();
 </code></pre>
-<h2 id="optional-properties">Optional properties</h2>
+<h1 id="optional-properties">Optional properties</h1>
 <p>Maybe is useful for optional properties. The default implementation of maybe represents the null case, therefore optional properties of type <code><a href="/BBT.Maybe/api/BBT.MaybePattern/Maybe_1">Maybe&lt;T&gt;</a></code> are representing the null case too and must not be initialized.</p>
 <pre><code class="language-csharp">/// Data class with mandatory property Foo and optional property Bar. Default of Bar is null.
 public class Data()
@@ -156,7 +160,7 @@ public void Foo(bool flag, Maybe&lt;A&gt; maybeA = default)
     ...
 }
 </code></pre>
-<h2 id="projection-method">Projection method</h2>
+<h1 id="projection-method">Projection method</h1>
 <p>Maybe provides a projection method (Some method) with an argument of type Func&lt;T, TProjected&gt;.
 The usage is similar to the null propagation operator.</p>
 <pre><code class="language-csharp">/// Class foo contains optional property bar.
