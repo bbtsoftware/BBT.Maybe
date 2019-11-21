@@ -53,20 +53,6 @@ var searchModule = function() {
     a(
         {
             id:1,
-            title:"Maybe",
-            content:"Maybe",
-            description:'',
-            tags:''
-        },
-        {
-            url:'/BBT.Maybe/api/BBT.MaybePattern/Maybe',
-            title:"Maybe",
-            description:""
-        }
-    );
-    a(
-        {
-            id:2,
             title:"NoneCase",
             content:"NoneCase",
             description:'',
@@ -75,6 +61,20 @@ var searchModule = function() {
         {
             url:'/BBT.Maybe/api/BBT.MaybePattern/NoneCase',
             title:"NoneCase",
+            description:""
+        }
+    );
+    a(
+        {
+            id:2,
+            title:"Maybe",
+            content:"Maybe",
+            description:'',
+            tags:''
+        },
+        {
+            url:'/BBT.Maybe/api/BBT.MaybePattern/Maybe',
+            title:"Maybe",
             description:""
         }
     );
