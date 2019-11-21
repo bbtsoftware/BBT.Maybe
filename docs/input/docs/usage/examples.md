@@ -6,8 +6,8 @@ Description: Example usage of BBT.Maybe
 
 # Usage of factory methods
 
-Maybe values are created using factory methods provided by Maybe. Methods with arguments for reference are available (`Maybe.Some<T>`).
-For the none case parameterless methods can be used (`Maybe.None<T>`).
+Maybe values are created using factory methods provided by Maybe. Methods with arguments for reference are available (`Maybe.Some<T>(T)`).
+For the none case parameterless methods can be used (`Maybe.None<T>()`).
 For nullable value types analogous methods postfixed with 'Struct' are provided.
 
 ```csharp
@@ -26,12 +26,23 @@ var maybeNumber = Maybe.SomeStruct<int>(number);
 var maybeNumber2 = Maybe.NoneStruct<int>();
 ```
 
+# Maybe methods
+
+Instead of direct access to a reference type variable, `Maybe<T>.Do(Action<T>)` is used to declare an action which is called in case the referenced value is instantiated. The `NoneCase.DoIfNone(Action)` method of its return value can be used to declare an action which is called if the referenced value is not instantiated.
+
+```csharp
+// Do action is only called if foo is instantiated, DoIfNone is called otherwise.
+Maybe.Some(foo)
+    .Do(x => x.Bar())
+    .DoIfNone(() => Console.WriteLine("No value set"));
+```
+
 # Optional properties
 
 Maybe is useful for optional properties. The default implementation of maybe represents the null case, therefore optional properties of type `Maybe<T>` are representing the null case too and must not be initialized.
 
 ```csharp
-/// Data class with mandatory property Foo and optional property Bar. Default of Bar is null.
+/// Data class with mandatory property Foo and optional property MaybeBar. Default of MaybeBar is Maybe.None<Bar>.
 public class Data()
 {
     public Data(Foo foo)
@@ -44,25 +55,25 @@ public class Data()
 }
 ```
 
-## Optional method arguments
+# Optional method arguments
 
-Maybe can be decalred as optional method arguments using the default keyword.
+Maybe can be declared as optional method arguments using the default keyword.
 
 ```csharp
-/// Data class with mandatory property A and optional property B. Default of B is null.
-public void Foo(bool flag, Maybe<A> maybeA = default)
+/// maybeBar is an optional parameter. Maybe.None<Bar>() is default.
+public void Foo(Maybe<Bar> maybeBar = default)
 {
-    ...
+    maybeBar.Do(x => x.Bar());
 }
 ```
 
 # Projection method
 
-Maybe provides a projection method (Some method) with an argument of type Func<T, TProjected>.
+Maybe provides a projection method (`Maybe<T>.Some<TResult>(Func<T, TResult>)`) with an argument of type Func<T, TResult>.
 The usage is similar to the null propagation operator.
 
 ```csharp
-/// Class foo contains optional property bar.
+/// Class foo contains optional property Bar.
 public class Foo()
 {
     public Bar { get; set; } = null;
