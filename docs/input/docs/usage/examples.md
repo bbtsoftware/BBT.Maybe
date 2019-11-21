@@ -4,7 +4,7 @@ Title: Examples
 Description: Example usage of BBT.Maybe
 ---
 
-## Usage of factory methods
+# Usage of factory methods
 
 Maybe values are created using factory methods provided by Maybe. Methods with arguments for reference are available (`Maybe.Some<T>`).
 For the none case parameterless methods can be used (`Maybe.None<T>`).
@@ -26,7 +26,7 @@ var maybeNumber = Maybe.SomeStruct<int>(number);
 var maybeNumber2 = Maybe.NoneStruct<int>();
 ```
 
-## Optional properties
+# Optional properties
 
 Maybe is useful for optional properties. The default implementation of maybe represents the null case, therefore optional properties of type `Maybe<T>` are representing the null case too and must not be initialized.
 
@@ -56,7 +56,7 @@ public void Foo(bool flag, Maybe<A> maybeA = default)
 }
 ```
 
-## Projection method
+# Projection method
 
 Maybe provides a projection method (Some method) with an argument of type Func<T, TProjected>.
 The usage is similar to the null propagation operator.

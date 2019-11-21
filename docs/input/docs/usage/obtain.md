@@ -4,7 +4,7 @@ Title: Obtain
 Description: Obtain BBT.Maybe
 ---
 
-## Nuget
+# Nuget
 
 BBT.Maybe is available as NuGet package. See [https://www.nuget.org/packages/BBT.Maybe].
 
