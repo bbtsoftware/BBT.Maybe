@@ -39,34 +39,20 @@ var searchModule = function() {
     a(
         {
             id:0,
-            title:"Maybe",
-            content:"Maybe",
+            title:"MaybeStruct",
+            content:"MaybeStruct",
             description:'',
             tags:''
         },
         {
-            url:'/BBT.Maybe/api/BBT.MaybePattern/Maybe_1',
-            title:"Maybe<T>",
+            url:'/BBT.Maybe/api/BBT.MaybePattern/MaybeStruct_1',
+            title:"MaybeStruct<T>",
             description:""
         }
     );
     a(
         {
             id:1,
-            title:"NoneCase",
-            content:"NoneCase",
-            description:'',
-            tags:''
-        },
-        {
-            url:'/BBT.Maybe/api/BBT.MaybePattern/NoneCase',
-            title:"NoneCase",
-            description:""
-        }
-    );
-    a(
-        {
-            id:2,
             title:"Maybe",
             content:"Maybe",
             description:'',
@@ -80,15 +66,29 @@ var searchModule = function() {
     );
     a(
         {
-            id:3,
-            title:"MaybeStruct",
-            content:"MaybeStruct",
+            id:2,
+            title:"NoneCase",
+            content:"NoneCase",
             description:'',
             tags:''
         },
         {
-            url:'/BBT.Maybe/api/BBT.MaybePattern/MaybeStruct_1',
-            title:"MaybeStruct<T>",
+            url:'/BBT.Maybe/api/BBT.MaybePattern/NoneCase',
+            title:"NoneCase",
+            description:""
+        }
+    );
+    a(
+        {
+            id:3,
+            title:"Maybe",
+            content:"Maybe",
+            description:'',
+            tags:''
+        },
+        {
+            url:'/BBT.Maybe/api/BBT.MaybePattern/Maybe_1',
+            title:"Maybe<T>",
             description:""
         }
     );
