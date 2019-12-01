@@ -12,7 +12,7 @@
     /// </remarks>
     /// <typeparam name="T">The value type.</typeparam>
     [Serializable]
-    public struct MaybeStruct<T> : ISerializable, IEquatable<MaybeStruct<T>>
+    public struct MaybeStruct<T> : ISerializable, IEquatable<MaybeStruct<T>>, IMaybe<T>
         where T : struct
     {
         private readonly T? value;
@@ -37,10 +37,7 @@
             this.value = MaybeUtils.GetDeserializedValue<T>(info, nameof(this.value));
         }
 
-        /// <summary>
-        /// Gets a value indicating whether <see cref="Maybe"/> has a value (true)
-        /// or is representing the null case (false).
-        /// </summary>
+        /// <inheritdoc/>
         public bool HasValue => this.value.HasValue;
 
         /// <summary>
@@ -63,11 +60,7 @@
             return !(a == b);
         }
 
-        /// <summary>
-        /// Starts <paramref name="doAction"/> if value is not null.
-        /// </summary>
-        /// <param name="doAction">The action which is performed if maybe is not none.</param>
-        /// <returns>The none case.</returns>
+        /// <inheritdoc/>
         public NoneCase Do(Action<T> doAction)
         {
             MaybeUtils.CheckArgumentNotNull(doAction, nameof(doAction));
@@ -87,7 +80,7 @@
         /// <typeparam name="TResult">The type of the projected result.</typeparam>
         /// <param name="func">The projection function.</param>
         /// <returns>The projected maybe.</returns>
-        public MaybeStruct<TResult> Some<TResult>(Func<T, TResult?> func)
+        public IMaybe<TResult> Some<TResult>(Func<T, TResult?> func)
             where TResult : struct
         {
             MaybeUtils.CheckArgumentNotNull(func, nameof(func));
@@ -98,13 +91,7 @@
             return lMaybe;
         }
 
-        /// <summary>
-        /// Returns the value in case it is initialized.
-        /// Otherwise throws an <see cref="InvalidOperationException"/>.
-        /// </summary>
-        /// <param name="maybeParameterName">The maybe reference used in error message.</param>
-        /// <param name="additionalMessage">Additional error message.</param>
-        /// <returns>The value.</returns>
+        /// <inheritdoc/>
         public T ThrowExceptionIfNone(
             string maybeParameterName,
             string additionalMessage = "")

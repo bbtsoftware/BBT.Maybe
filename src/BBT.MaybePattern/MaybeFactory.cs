@@ -14,7 +14,7 @@
         /// <typeparam name="T">The reference type.</typeparam>
         /// <param name="value">The value which may be null.</param>
         /// <returns>The maybe.</returns>
-        public static Maybe<T> Some<T>(T value)
+        public static IMaybe<T> Some<T>(T value)
             where T : class => new Maybe<T>(value);
 
         /// <summary>
@@ -22,7 +22,7 @@
         /// </summary>
         /// <typeparam name="T">The reference type.</typeparam>
         /// <returns>The maybe representing none.</returns>
-        public static Maybe<T> None<T>()
+        public static IMaybe<T> None<T>()
             where T : class => new Maybe<T>(null);
 
         /// <summary>
@@ -31,7 +31,7 @@
         /// <typeparam name="T">The reference type.</typeparam>
         /// <param name="value">The value which may be null.</param>
         /// <returns>The maybe.</returns>
-        public static MaybeStruct<T> SomeStruct<T>(T? value)
+        public static IMaybe<T> SomeStruct<T>(T? value)
             where T : struct => new MaybeStruct<T>(value);
 
         /// <summary>
@@ -39,7 +39,7 @@
         /// </summary>
         /// <typeparam name="T">The reference type.</typeparam>
         /// <returns>The maybe representing null.</returns>
-        public static MaybeStruct<T> NoneStruct<T>()
+        public static IMaybe<T> NoneStruct<T>()
             where T : struct => new MaybeStruct<T>(null);
     }
 }
