@@ -99,6 +99,57 @@
         }
 
         /// <summary>
+        /// Gets the <see cref="Maybe{TResult}"/> of the projection function <paramref name="func"/>.
+        /// </summary>
+        /// <typeparam name="TResult">The type of the projected result.</typeparam>
+        /// <param name="func">The projection function.</param>
+        /// <returns>The projected maybe.</returns>
+        public Maybe<TResult> Some<TResult>(Func<T, Maybe<TResult>> func)
+            where TResult : class
+        {
+            MaybeUtils.CheckArgumentNotNull(func, nameof(func));
+
+            var maybe = Maybe.None<TResult>();
+            this.Do(x => maybe = func(x));
+
+            return maybe;
+        }
+
+        /// <summary>
+        /// Gets the <see cref="MaybeStruct{TResult}"/> of the projection function <paramref name="func"/>.
+        /// </summary>
+        /// <typeparam name="TResult">The type of the projected result.</typeparam>
+        /// <param name="func">The projection function.</param>
+        /// <returns>The projected maybe.</returns>
+        public MaybeStruct<TResult> SomeStruct<TResult>(Func<T, TResult> func)
+            where TResult : struct
+        {
+            MaybeUtils.CheckArgumentNotNull(func, nameof(func));
+
+            var maybe = Maybe.NoneStruct<TResult>();
+            this.Do(x => maybe = Maybe.SomeStruct<TResult>(func(x)));
+
+            return maybe;
+        }
+
+        /// <summary>
+        /// Gets the <see cref="MaybeStruct{TResult}"/> of the projection function <paramref name="func"/>.
+        /// </summary>
+        /// <typeparam name="TResult">The type of the projected result.</typeparam>
+        /// <param name="func">The projection function.</param>
+        /// <returns>The projected maybe.</returns>
+        public MaybeStruct<TResult> SomeStruct<TResult>(Func<T, MaybeStruct<TResult>> func)
+            where TResult : struct
+        {
+            MaybeUtils.CheckArgumentNotNull(func, nameof(func));
+
+            var maybe = Maybe.NoneStruct<TResult>();
+            this.Do(x => maybe = func(x));
+
+            return maybe;
+        }
+
+        /// <summary>
         /// Returns the value in case it is initialized.
         /// Otherwise throws an <see cref="InvalidOperationException"/>.
         /// </summary>

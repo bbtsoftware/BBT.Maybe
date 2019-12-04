@@ -6,8 +6,13 @@
     public struct ReferencedStruct
     {
         /// <summary>
-        /// Gets or sets the owner of the 1-n relationship.
+        /// Gets or sets the referencing struct.
         /// </summary>
         public BaseStruct ReferencingStruct { get; set; }
+
+        /// <summary>
+        /// Gets or sets the referencing class.
+        /// </summary>
+        public BaseClass ReferencingClass { get; set; }
     }
 }
