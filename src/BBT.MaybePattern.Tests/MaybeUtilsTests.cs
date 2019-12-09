@@ -57,14 +57,30 @@ namespace BBT.MaybePattern.Tests
             public void Should_Throw_InvalidOperationException_If_Parameter_Is_Null()
             {
                 // Arrange
-                var parametertName = "parameterName";
+                var parameterName = "parameterName";
 
                 // Act
-                var exception = Record.Exception(() => MaybeUtils.CheckParameterNotNull<BaseClass>(null, parametertName));
+                var exception = Record.Exception(() => MaybeUtils.CheckParameterNotNull<BaseClass>(null, parameterName));
 
                 // Assert
                 exception.ShouldBeOfType<InvalidOperationException>();
-                exception.Message.ShouldContain(parametertName);
+                exception.Message.ShouldContain(parameterName);
+            }
+
+            [Fact]
+            public void Should_Throw_InvalidOperationException_With_Additional_Message_If_Parameter_Is_Null()
+            {
+                // Arrange
+                var parameterName = "parameterName";
+                var additionalMsg = "additionalMsg";
+
+                // Act
+                var exception = Record.Exception(() => MaybeUtils.CheckParameterNotNull<BaseClass>(null, parameterName, additionalMsg));
+
+                // Assert
+                exception.ShouldBeOfType<InvalidOperationException>();
+                exception.Message.ShouldContain(parameterName);
+                exception.Message.ShouldContain(additionalMsg);
             }
         }
 

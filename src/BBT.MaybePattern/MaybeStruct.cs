@@ -87,13 +87,64 @@
         /// <typeparam name="TResult">The type of the projected result.</typeparam>
         /// <param name="func">The projection function.</param>
         /// <returns>The projected maybe.</returns>
-        public MaybeStruct<TResult> Some<TResult>(Func<T, TResult?> func)
+        public Maybe<TResult> Some<TResult>(Func<T, TResult> func)
+            where TResult : class
+        {
+            MaybeUtils.CheckArgumentNotNull(func, nameof(func));
+
+            var lMaybe = Maybe.None<TResult>();
+            this.Do(x => lMaybe = Maybe.Some(func(x)));
+
+            return lMaybe;
+        }
+
+        /// <summary>
+        /// Gets the <see cref="Maybe{TResult}"/> of the projection function <paramref name="func"/>.
+        /// </summary>
+        /// <typeparam name="TResult">The type of the projected result.</typeparam>
+        /// <param name="func">The projection function.</param>
+        /// <returns>The projected maybe.</returns>
+        public Maybe<TResult> Some<TResult>(Func<T, Maybe<TResult>> func)
+            where TResult : class
+        {
+            MaybeUtils.CheckArgumentNotNull(func, nameof(func));
+
+            var lMaybe = Maybe.None<TResult>();
+            this.Do(x => lMaybe = func(x));
+
+            return lMaybe;
+        }
+
+        /// <summary>
+        /// Gets the <see cref="MaybeStruct{TResult}"/> of the projection function <paramref name="func"/>.
+        /// </summary>
+        /// <typeparam name="TResult">The type of the projected result.</typeparam>
+        /// <param name="func">The projection function.</param>
+        /// <returns>The projected maybe.</returns>
+        public MaybeStruct<TResult> SomeStruct<TResult>(Func<T, TResult?> func)
             where TResult : struct
         {
             MaybeUtils.CheckArgumentNotNull(func, nameof(func));
 
             var lMaybe = Maybe.NoneStruct<TResult>();
             this.Do(x => lMaybe = Maybe.SomeStruct(func(x)));
+
+            return lMaybe;
+        }
+
+        /// <summary>
+        /// Gets the <see cref="MaybeStruct{TResult}"/> of the projection function <paramref name="func"/>.
+        /// </summary>
+        /// <typeparam name="TResult">The type of the projected result.</typeparam>
+        /// <param name="func">The projection function.</param>
+        /// <returns>The projected maybe.</returns>
+        public MaybeStruct<TResult> SomeStruct<TResult>(Func<T, MaybeStruct<TResult>> func)
+            where TResult : struct
+        {
+            MaybeUtils.CheckArgumentNotNull(func, nameof(func));
+
+            var lMaybe = Maybe.NoneStruct<TResult>();
+            this.Do(x => lMaybe = func(x));
 
             return lMaybe;
         }

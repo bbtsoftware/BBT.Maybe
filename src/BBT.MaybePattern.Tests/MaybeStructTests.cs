@@ -88,6 +88,54 @@
         public sealed class TheSomeMethod
         {
             [Fact]
+            public void Called_With_Projection_Func_To_Not_Null_Referencing_Class_Should_Return_Some_Maybe_Of_Type_Referencing_Class()
+            {
+                // Arrange
+                var referencedStruct = default(ReferencedStruct);
+                var referencingClass = new BaseClass();
+                referencedStruct.ReferencingClass = referencingClass;
+
+                // Act
+                var maybeReferencingClass = Maybe.SomeStruct<ReferencedStruct>(referencedStruct)
+                    .Some(x => x.ReferencingClass);
+
+                // Assert
+                maybeReferencingClass.ShouldBe(Maybe.Some<BaseClass>(referencingClass));
+            }
+
+            [Fact]
+            public void Called_With_Projection_Func_To_Null_Referencing_Class_Should_Return_None_Maybe_Of_Type_Referencing_Class()
+            {
+                // Arrange
+                var maybeReferencedStruct = Maybe.NoneStruct<ReferencedStruct>();
+
+                // Act
+                var maybeReferencingClass = maybeReferencedStruct.Some(x => x.ReferencingClass);
+
+                // Assert
+                maybeReferencingClass.ShouldBe(Maybe.None<BaseClass>());
+            }
+
+            [Fact]
+            public void Called_With_Projection_Func_To_Maybe_Should_Return_Some_Maybe_Of_Type_Maybe()
+            {
+                // Arrange
+                var referencedStruct = default(ReferencedStruct);
+                var referencingClass = new BaseClass();
+                referencedStruct.ReferencingClass = referencingClass;
+
+                // Act
+                var maybeReferencingStruct = Maybe.SomeStruct<ReferencedStruct>(referencedStruct)
+                    .Some(x => Maybe.Some(x.ReferencingClass));
+
+                // Assert
+                maybeReferencingStruct.ShouldBe(Maybe.Some<BaseClass>(referencingClass));
+            }
+        }
+
+        public sealed class TheSomeStructMethod
+        {
+            [Fact]
             public void Called_With_Projection_Func_To_Not_Null_Referencing_Struct_Should_Return_Some_Maybe_Of_Type_Referencing_Struct()
             {
                 // Arrange
@@ -97,7 +145,7 @@
 
                 // Act
                 var maybeReferencingStruct = Maybe.SomeStruct<ReferencedStruct>(referencedStruct)
-                    .Some<BaseStruct>(x => x.ReferencingStruct);
+                    .SomeStruct<BaseStruct>(x => x.ReferencingStruct);
 
                 // Assert
                 maybeReferencingStruct.ShouldBe(Maybe.SomeStruct<BaseStruct>(referencingStruct));
@@ -110,10 +158,26 @@
                 var maybeReferencedStruct = Maybe.NoneStruct<ReferencedStruct>();
 
                 // Act
-                var maybeReferencingStruct = maybeReferencedStruct.Some<BaseStruct>(x => x.ReferencingStruct);
+                var maybeReferencingStruct = maybeReferencedStruct.SomeStruct<BaseStruct>(x => x.ReferencingStruct);
 
                 // Assert
                 maybeReferencingStruct.ShouldBe(Maybe.NoneStruct<BaseStruct>());
+            }
+
+            [Fact]
+            public void Called_With_Projection_Func_To_MaybeStruct_Should_Return_Some_Maybe_Of_Type_MaybeStruct()
+            {
+                // Arrange
+                var referencedStruct = default(ReferencedStruct);
+                var referencingStruct = default(BaseStruct);
+                referencedStruct.ReferencingStruct = referencingStruct;
+
+                // Act
+                var maybeReferencingStruct = Maybe.SomeStruct<ReferencedStruct>(referencedStruct)
+                    .SomeStruct<BaseStruct>(x => Maybe.SomeStruct<BaseStruct>(x.ReferencingStruct));
+
+                // Assert
+                maybeReferencingStruct.ShouldBe(Maybe.SomeStruct<BaseStruct>(referencingStruct));
             }
         }
 
@@ -223,6 +287,20 @@
 
                 // Act
                 var isEqual = object.Equals(maybeNone, maybeNone2);
+
+                // Assert
+                isEqual.ShouldBeFalse();
+            }
+
+            [Fact]
+            public void Should_Return_False_If_Input_Is_Not_Of_Same_Type()
+            {
+                // Arrange
+                var maybe = Maybe.NoneStruct<BaseStruct>();
+                var otherType = new BaseStruct();
+
+                // Act
+                var isEqual = maybe.Equals(otherType);
 
                 // Assert
                 isEqual.ShouldBeFalse();
