@@ -151,12 +151,26 @@
 
         /// <summary>
         /// Returns the value in case it is initialized.
+        /// Otherwise <paramref name="defaultValue"/> is returned.
+        /// </summary>
+        /// <param name="defaultValue">The value returned in case maybe is not initialized with a value.</param>
+        /// <returns>The value or <paramref name="defaultValue"/>.</returns>
+        public T ValueOrDefault(
+            T defaultValue)
+        {
+            var returnValue = defaultValue;
+            this.Do(x => returnValue = x);
+            return returnValue;
+        }
+
+        /// <summary>
+        /// Returns the value in case it is initialized.
         /// Otherwise throws an <see cref="InvalidOperationException"/>.
         /// </summary>
         /// <param name="maybeParameterName">The maybe reference used in error message.</param>
         /// <param name="additionalMessage">Additional error message.</param>
         /// <returns>The value.</returns>
-        public T ThrowExceptionIfNone(
+        public T ValueOrException(
             string maybeParameterName,
             string additionalMessage = "")
         {

@@ -20,7 +20,7 @@
 
                 // Act & Assert
                 maybe.HasValue.ShouldBeTrue();
-                var value = maybe.ThrowExceptionIfNone(nameof(maybe));
+                var value = maybe.ValueOrException(nameof(maybe));
                 value.ShouldBe(baseClass);
             }
 
@@ -57,7 +57,7 @@
 
                 // Assert
                 maybe.HasValue.ShouldBeTrue();
-                var value = maybe.ThrowExceptionIfNone(nameof(maybe));
+                var value = maybe.ValueOrException(nameof(maybe));
                 value.ShouldBe(baseClass);
             }
         }
@@ -346,7 +346,38 @@
             }
         }
 
-        public sealed class TheThrowExceptionIfNoneMethod
+        public sealed class TheValueOrDefaultMethod
+        {
+            [Fact]
+            public void Should_Return_Value_If_Called_For_None_Mabye()
+            {
+                // Arrange
+                var maybe = Maybe.None<BaseClass>();
+                var baseClass = new BaseClass();
+
+                // Act
+                var result = maybe.ValueOrDefault(baseClass);
+
+                // Assert
+                result.ShouldBe(baseClass);
+            }
+
+            [Fact]
+            public void Should_Return_Value_If_Called_For_Some_Mabye()
+            {
+                // Arrange
+                var baseClass = new BaseClass();
+                var maybe = Maybe.Some(baseClass);
+
+                // Act
+                var result = maybe.ValueOrDefault(new BaseClass());
+
+                // Assert
+                result.ShouldBe(baseClass);
+            }
+        }
+
+        public sealed class TheValueOrExceptionMethod
         {
             [Fact]
             public void Should_Throw_InvalidOperationException_If_Called_For_None_Mabye()
@@ -355,7 +386,7 @@
                 var maybeNone = Maybe.None<BaseClass>();
 
                 // Act
-                var exception = Record.Exception(() => maybeNone.ThrowExceptionIfNone(nameof(maybeNone)));
+                var exception = Record.Exception(() => maybeNone.ValueOrException(nameof(maybeNone)));
 
                 // Assert
                 exception.ShouldBeOfType<InvalidOperationException>();
@@ -370,7 +401,7 @@
                 var maybeNone = Maybe.Some<BaseClass>(baseClass);
 
                 // Act
-                var result = maybeNone.ThrowExceptionIfNone(nameof(maybeNone));
+                var result = maybeNone.ValueOrException(nameof(maybeNone));
 
                 // Assert
                 result.ShouldBe(baseClass);
