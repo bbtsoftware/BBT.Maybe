@@ -55,15 +55,46 @@ public class Data()
 }
 ```
 
+If a default value is needed, for example when specifying a file extension, the value can be encapsulated by a `Maybe` as well:
+
+```csharp
+public class Data()
+{
+    public Data(Foo foo, Maybe<string> maybeFileExtension)
+    {
+        Foo = foo;
+        // If a file extension is specified the value from the Maybe is used
+        // If no value is provided by the Maybe the FileExtension is set to ".txt"
+        FileExtension = maybeFileExtension.ValueOrDefault(".txt");
+    }
+
+    public Foo { get; }
+    public string FileExtension { get; }
+}
+```
+
 # Optional method arguments
 
 Maybe can be declared as optional method arguments using the default keyword.
 
 ```csharp
-/// maybeBar is an optional parameter. Maybe.None<Bar>() is default.
+/// maybeBar is an optional parameter. Maybe.None<Bar>() is the default value.
 public void Foo(Maybe<Bar> maybeBar = default)
 {
     maybeBar.Do(x => x.Bar());
+}
+```
+
+It's also possible to retrieve the value (or a default value) from the `Maybe` in a method:
+
+```csharp
+private readonly defaultBar = new Bar();
+
+/// maybeBar is an optional parameter. Maybe.None<Bar>() is the default value.
+/// By using ValueOrDefault a default instance of the Bar class can be used.
+public void Foo(Maybe<Bar> maybeBar = default)
+{
+    var bar = maybeBar.ValueOrDefault(this.defaultBar);
 }
 ```
 
@@ -89,3 +120,16 @@ Maybe.Some(foo).Some(x => x.Bar).Do(x => ...);
 Maybe.Some(foo) is the factory method call for the creation of the maybe of type Foo.
 The second call Some(x => x.Bar) is the projection method projecting the Foo maybe to a maybe of its property type Bar.
 Therefore projections of cascades of properties can be done without the need of null checks or null propagation.
+
+# Assertion
+
+A `Maybe` can be asserted to have a value by calling `ValueOrException`:
+
+```csharp
+/// maybeBar may or may not have a value.
+public void Foo(Maybe<Bar> maybeBar)
+{
+    // If maybeBar doesn't have a value an exception is thrown.
+    var bar = maybeBar.ValueOrException(nameof(maybeBar));
+}
+```
