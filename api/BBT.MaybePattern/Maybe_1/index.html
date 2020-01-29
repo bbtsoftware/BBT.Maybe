@@ -316,35 +316,36 @@ public struct Maybe&lt;T&gt; : ValueType, ISerializable, IEquatable&lt;Maybe&lt;
 								<td><a href="/BBT.Maybe/api/BBT.MaybePattern/Maybe_1/C23DB571">Equals<wbr>(Maybe<wbr>&lt;T&gt;<wbr>)<wbr></a></td>
 								<td>bool</td>
 								<td>
-									<div>
-    See <code class="cs">System.IEquatable`1.Equals(`0)</code>.
-    </div>
+									<div></div>
 								</td>
 							</tr>
 							<tr>
 								<td><a href="/BBT.Maybe/api/BBT.MaybePattern/Maybe_1/4D2E6F13">Equals<wbr>(object)<wbr></a></td>
 								<td>bool</td>
 								<td>
-									<div>
-    See <code class="cs"><a href="/BBT.Maybe">Equals(object)</a></code>.
-    </div>
+									<div></div>
 								</td>
 							</tr>
 							<tr>
 								<td><a href="/BBT.Maybe/api/BBT.MaybePattern/Maybe_1/973EBF17">GetHashCode<wbr>()<wbr></a></td>
 								<td>int</td>
 								<td>
-									<div>
-    See <code class="cs"><a href="/BBT.Maybe">GetHashCode()</a></code>.
-    </div>
+									<div></div>
 								</td>
 							</tr>
 							<tr>
 								<td><a href="/BBT.Maybe/api/BBT.MaybePattern/Maybe_1/00C5A981">GetObjectData<wbr>(SerializationInfo, <wbr>StreamingContext)<wbr></a></td>
 								<td>void</td>
 								<td>
+									<div></div>
+								</td>
+							</tr>
+							<tr>
+								<td><a href="/BBT.Maybe/api/BBT.MaybePattern/Maybe_1/D7FE70CD">Some<wbr>&lt;TResult&gt;<wbr><wbr>(Func<wbr>&lt;T, <wbr>Maybe<wbr>&lt;TResult&gt;<wbr>&gt;<wbr>)<wbr></a></td>
+								<td><a href="/BBT.Maybe/api/BBT.MaybePattern/Maybe_1">Maybe</a><wbr>&lt;TResult&gt;<wbr></td>
+								<td>
 									<div>
-    See <code class="cs">System.Runtime.Serialization.ISerializable.GetObjectData(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)</code>.
+    Gets the <code class="cs"><a href="/BBT.Maybe/api/BBT.MaybePattern/Maybe_1">Maybe&lt;T&gt;</a></code> of the projection function <span name="func" class="paramref">func</span>.
     </div>
 								</td>
 							</tr>
@@ -358,12 +359,20 @@ public struct Maybe&lt;T&gt; : ValueType, ISerializable, IEquatable&lt;Maybe&lt;
 								</td>
 							</tr>
 							<tr>
-								<td><a href="/BBT.Maybe/api/BBT.MaybePattern/Maybe_1/2C873B4B">ThrowExceptionIfNone<wbr>(string, <wbr>string)<wbr></a></td>
-								<td><a href="/BBT.Maybe/api/BBT.MaybePattern/Maybe_1#typeparam-T">T</a></td>
+								<td><a href="/BBT.Maybe/api/BBT.MaybePattern/Maybe_1/D302C495">SomeStruct<wbr>&lt;TResult&gt;<wbr><wbr>(Func<wbr>&lt;T, <wbr>MaybeStruct<wbr>&lt;TResult&gt;<wbr>&gt;<wbr>)<wbr></a></td>
+								<td><a href="/BBT.Maybe/api/BBT.MaybePattern/MaybeStruct_1">MaybeStruct</a><wbr>&lt;TResult&gt;<wbr></td>
 								<td>
 									<div>
-    Returns the value in case it is initialized.
-    Otherwise throws an <code class="cs">System.InvalidOperationException</code>.
+    Gets the <code class="cs"><a href="/BBT.Maybe/api/BBT.MaybePattern/MaybeStruct_1">MaybeStruct&lt;T&gt;</a></code> of the projection function <span name="func" class="paramref">func</span>.
+    </div>
+								</td>
+							</tr>
+							<tr>
+								<td><a href="/BBT.Maybe/api/BBT.MaybePattern/Maybe_1/9D70FE09">SomeStruct<wbr>&lt;TResult&gt;<wbr><wbr>(Func<wbr>&lt;T, <wbr>TResult&gt;<wbr>)<wbr></a></td>
+								<td><a href="/BBT.Maybe/api/BBT.MaybePattern/MaybeStruct_1">MaybeStruct</a><wbr>&lt;TResult&gt;<wbr></td>
+								<td>
+									<div>
+    Gets the <code class="cs"><a href="/BBT.Maybe/api/BBT.MaybePattern/MaybeStruct_1">MaybeStruct&lt;T&gt;</a></code> of the projection function <span name="func" class="paramref">func</span>.
     </div>
 								</td>
 							</tr>
@@ -371,8 +380,26 @@ public struct Maybe&lt;T&gt; : ValueType, ISerializable, IEquatable&lt;Maybe&lt;
 								<td><a href="/BBT.Maybe/api/BBT.MaybePattern/Maybe_1/9E44FC1C">ToString<wbr>()<wbr></a></td>
 								<td>string</td>
 								<td>
+									<div></div>
+								</td>
+							</tr>
+							<tr>
+								<td><a href="/BBT.Maybe/api/BBT.MaybePattern/Maybe_1/60573A4A">ValueOrDefault<wbr>(T)<wbr></a></td>
+								<td><a href="/BBT.Maybe/api/BBT.MaybePattern/Maybe_1#typeparam-T">T</a></td>
+								<td>
 									<div>
-    See <code class="cs"><a href="/BBT.Maybe">ToString()</a></code>.
+    Returns the value in case it is initialized.
+    Otherwise <span name="defaultValue" class="paramref">defaultValue</span> is returned.
+    </div>
+								</td>
+							</tr>
+							<tr>
+								<td><a href="/BBT.Maybe/api/BBT.MaybePattern/Maybe_1/7FF98C0B">ValueOrException<wbr>(string, <wbr>string)<wbr></a></td>
+								<td><a href="/BBT.Maybe/api/BBT.MaybePattern/Maybe_1#typeparam-T">T</a></td>
+								<td>
+									<div>
+    Returns the value in case it is initialized.
+    Otherwise throws an <code class="cs">System.InvalidOperationException</code>.
     </div>
 								</td>
 							</tr>

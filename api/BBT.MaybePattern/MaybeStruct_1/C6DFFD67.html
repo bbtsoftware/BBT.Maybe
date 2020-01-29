@@ -6,7 +6,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="shortcut icon" href="/BBT.Maybe/assets/img/favicon.ico" type="image/x-icon">
         <link rel="icon" href="/BBT.Maybe/assets/img/favicon.ico" type="image/x-icon">
-        <title>BBT.Maybe - API - MaybeStruct&lt;T&gt; Struct</title>
+        <title>BBT.Maybe - API - MaybeStruct&lt;T&gt;.Some&lt;TResult&gt;(Func&lt;T, TResult&gt;) Method</title>
         <link href="/BBT.Maybe/assets/css/highlight.css" rel="stylesheet">
         <link href="/BBT.Maybe/assets/css/bootstrap/bootstrap.css" rel="stylesheet">
         <link href="/BBT.Maybe/assets/css/adminlte/AdminLTE.css" rel="stylesheet">
@@ -73,12 +73,9 @@
                     	
 	<div id="infobar-headings"><h6>On This Page</h6><p><a href="#Summary">Summary</a></p>
 <p><a href="#Syntax">Syntax</a></p>
-<p><a href="#Remarks">Remarks</a></p>
-<p><a href="#Attributes">Attributes</a></p>
 <p><a href="#TypeParameters">Type Parameters</a></p>
-<p><a href="#Properties">Properties</a></p>
-<p><a href="#Methods">Methods</a></p>
-<p><a href="#Operators">Operators</a></p>
+<p><a href="#Parameters">Parameters</a></p>
+<p><a href="#ReturnValue">Return Value</a></p>
 <hr class="infobar-hidden">
 </div>
 
@@ -139,13 +136,24 @@
                         
 			<li class="header">Namespace</li>
 		<li><a href="/BBT.Maybe/api/BBT.MaybePattern">BBT<wbr>.MaybePattern</a></li>
+		<li class="header">Type</li>
+		<li><a href="/BBT.Maybe/api/BBT.MaybePattern/MaybeStruct_1">MaybeStruct<wbr>&lt;T&gt;<wbr></a></li>
 		<li role="separator" class="divider"></li>
-			<li class="header">Struct Types</li>
-				<li><a href="/BBT.Maybe/api/BBT.MaybePattern/Maybe_1">Maybe<wbr>&lt;T&gt;<wbr></a></li>
-				<li class="selected"><a href="/BBT.Maybe/api/BBT.MaybePattern/MaybeStruct_1">MaybeStruct<wbr>&lt;T&gt;<wbr></a></li>
-				<li><a href="/BBT.Maybe/api/BBT.MaybePattern/NoneCase">NoneCase</a></li>
-			<li class="header">Class Types</li>
-				<li><a href="/BBT.Maybe/api/BBT.MaybePattern/Maybe">Maybe</a></li>
+			<li class="header">Property Members</li>
+				<li><a href="/BBT.Maybe/api/BBT.MaybePattern/MaybeStruct_1/37E19222">HasValue</a></li>
+			<li class="header">Method Members</li>
+				<li><a href="/BBT.Maybe/api/BBT.MaybePattern/MaybeStruct_1/37735493">Do<wbr>(Action<wbr>&lt;T&gt;<wbr>)<wbr></a></li>
+				<li><a href="/BBT.Maybe/api/BBT.MaybePattern/MaybeStruct_1/564C0C5D">Equals<wbr>(object)<wbr></a></li>
+				<li><a href="/BBT.Maybe/api/BBT.MaybePattern/MaybeStruct_1/8497DAB6">Equals<wbr>(MaybeStruct<wbr>&lt;T&gt;<wbr>)<wbr></a></li>
+				<li><a href="/BBT.Maybe/api/BBT.MaybePattern/MaybeStruct_1/22348147">GetHashCode<wbr>()<wbr></a></li>
+				<li><a href="/BBT.Maybe/api/BBT.MaybePattern/MaybeStruct_1/31D0D32C">GetObjectData<wbr>(SerializationInfo, <wbr>StreamingContext)<wbr></a></li>
+				<li class="selected"><a href="/BBT.Maybe/api/BBT.MaybePattern/MaybeStruct_1/C6DFFD67">Some<wbr>&lt;TResult&gt;<wbr><wbr>(Func<wbr>&lt;T, <wbr>TResult&gt;<wbr>)<wbr></a></li>
+				<li><a href="/BBT.Maybe/api/BBT.MaybePattern/MaybeStruct_1/77ACF4A6">Some<wbr>&lt;TResult&gt;<wbr><wbr>(Func<wbr>&lt;T, <wbr>Maybe<wbr>&lt;TResult&gt;<wbr>&gt;<wbr>)<wbr></a></li>
+				<li><a href="/BBT.Maybe/api/BBT.MaybePattern/MaybeStruct_1/531A828D">SomeStruct<wbr>&lt;TResult&gt;<wbr><wbr>(Func<wbr>&lt;T, <wbr>TResult?&gt;<wbr>)<wbr></a></li>
+				<li><a href="/BBT.Maybe/api/BBT.MaybePattern/MaybeStruct_1/2C6438FC">SomeStruct<wbr>&lt;TResult&gt;<wbr><wbr>(Func<wbr>&lt;T, <wbr>MaybeStruct<wbr>&lt;TResult&gt;<wbr>&gt;<wbr>)<wbr></a></li>
+				<li><a href="/BBT.Maybe/api/BBT.MaybePattern/MaybeStruct_1/C32D696F">ToString<wbr>()<wbr></a></li>
+				<li><a href="/BBT.Maybe/api/BBT.MaybePattern/MaybeStruct_1/441DF04C">ValueOrDefault<wbr>(T)<wbr></a></li>
+				<li><a href="/BBT.Maybe/api/BBT.MaybePattern/MaybeStruct_1/9088CA48">ValueOrException<wbr>(string, <wbr>string)<wbr></a></li>
 
 
                     </ul>
@@ -160,88 +168,36 @@
 
 
 <section class="content-header">
-	<h1>MaybeStruct<wbr>&lt;T&gt;<wbr> <small>Struct</small></h1>
+			<h3><a href="/BBT.Maybe/api/BBT.MaybePattern/MaybeStruct_1">MaybeStruct</a><wbr>&lt;<a href="/BBT.Maybe/api/BBT.MaybePattern/MaybeStruct_1#typeparam-T">T</a>&gt;<wbr>.</h3>
+	<h1>Some<wbr>&lt;TResult&gt;<wbr><wbr>(Func<wbr>&lt;T, <wbr>TResult&gt;<wbr>)<wbr> <small>Method</small></h1>
 </section>
 <section class="content">
 	
 	
 		<h1 id="Summary">Summary</h1>
 	<div class="lead">
-    Represents a nullable value type which may be null or not null.
+    Gets the <code class="cs"><a href="/BBT.Maybe/api/BBT.MaybePattern/Maybe_1">Maybe&lt;T&gt;</a></code> of the projection function <span name="func" class="paramref">func</span>.
     </div>
 
 		<div class="panel panel-default">
-  			<div class="panel-body">
-				<div class="row">
-					<div class="col-md-6">
-						<dl class="dl-horizontal">		
-
-								<dt>Namespace</dt>
-								<dd><a href="/BBT.Maybe/api/BBT.MaybePattern">BBT<wbr>.MaybePattern</a></dd>
-											
-								<dt>Interfaces</dt>
-								<dd>
-									<ul class="list-unstyled">
-											<li>ISerializable</li>								
-											<li>IEquatable<wbr>&lt;<a href="/BBT.Maybe/api/BBT.MaybePattern/MaybeStruct_1">MaybeStruct</a><wbr>&lt;<a href="/BBT.Maybe/api/BBT.MaybePattern/MaybeStruct_1#typeparam-T">T</a>&gt;<wbr>&gt;<wbr></li>								
-									</ul>
-								</dd>
-							
-								<dt>Base Types</dt>
-								<dd>
-									<ul class="list-unstyled">										
-											<li>object</li>								
-											<li>ValueType</li>								
-									</ul>
-								</dd>				
-							
-							
-						</dl>
-					</div>		
-					<div class="col-md-6">
-						<div class="mermaid">
-							graph BT
-	Type--&gt;Base0["ValueType"]
-	Base0--&gt;Base1["object"]
-	Type-.-&gt;Interface0["ISerializable"]
-	Type-.-&gt;Interface1["IEquatable&lt;MaybeStruct&lt;T&gt;&gt;"]
-	Type["MaybeStruct&lt;T&gt;"]
-class Type type-node
-
-						</div>
-					</div>
-				</div>
+  			<div class="panel-body">	
+				<dl class="dl-horizontal">	
+						
+						<dt>Namespace</dt>
+						<dd><a href="/BBT.Maybe/api/BBT.MaybePattern">BBT<wbr>.MaybePattern</a></dd>
+					
+						<dt>Containing Type</dt>
+						<dd><a href="/BBT.Maybe/api/BBT.MaybePattern/MaybeStruct_1">MaybeStruct</a><wbr>&lt;<a href="/BBT.Maybe/api/BBT.MaybePattern/MaybeStruct_1#typeparam-T">T</a>&gt;<wbr></dd>		
+					
+				</dl>
   			</div>
 		</div>
 
 	<h1 id="Syntax">Syntax</h1>
-	<pre><code>[Serializable]
-public struct MaybeStruct&lt;T&gt; : ValueType, ISerializable, IEquatable&lt;MaybeStruct&lt;T&gt;&gt; where T : struct</code></pre>
+	<pre><code>public Maybe&lt;TResult&gt; Some&lt;TResult&gt;(Func&lt;T, TResult&gt; func) where TResult : class</code></pre>
 
 
-	<h1 id="Remarks">Remarks</h1>
-	<div>
-    Implementation of the "maybe monad" pattern / Optional-pattern.
-    https://smellegantcode.wordpress.com/2008/12/11/the-maybe-monad-in-c/.
-    </div>
 
-	<h1 id="Attributes">Attributes</h1>
-	<div class="box">
-		<div class="box-body no-padding table-responsive">
-			<table class="table table-striped table-hover two-cols">
-				<thead>
-					<tr>
-						<th>Type</th>
-						<th>Description</th>
-					</tr>
-				</thead>
-					<tbody><tr>
-						<td>Serializable<wbr>Attribute</td>
-						<td></td>
-					</tr>
-			</tbody></table>
-		</div>
-	</div>	
 
 	<h1 id="TypeParameters">Type Parameters</h1>
 	<div class="box">
@@ -253,190 +209,51 @@ public struct MaybeStruct&lt;T&gt; : ValueType, ISerializable, IEquatable&lt;May
 						<th>Description</th>
 					</tr>
 				</thead>
-					<tbody><tr id="typeparam-T">
-						<td>T</td>
-						<td>The value type.</td>
+					<tbody><tr id="typeparam-TResult">
+						<td>TResult</td>
+						<td>The type of the projected result.</td>
 					</tr>
 			</tbody></table>
 		</div>
 	</div>	
 
+	<h1 id="Parameters">Parameters</h1>
+	<div class="box">
+		<div class="box-body no-padding table-responsive">
+			<table class="table table-striped table-hover three-cols">
+				<thead>
+					<tr>
+						<th>Name</th>
+						<th>Type</th>
+						<th>Description</th>
+					</tr>
+				</thead>
+					<tbody><tr>
+						<td>func</td>
+						<td>Func<wbr>&lt;<a href="/BBT.Maybe/api/BBT.MaybePattern/MaybeStruct_1#typeparam-T">T</a>, <wbr>TResult&gt;<wbr></td>
+						<td>The projection function.</td>
+					</tr>
+			</tbody></table>
+		</div>
+	</div>	
 
-
-
-
-
-			<h1 id="Properties">Properties</h1>
-			<div class="box">
-				<div class="box-body no-padding table-responsive">
-					<table class="table table-striped table-hover three-cols">
-						<thead>
-							<tr>
-								<th>Name</th>
-								<th>Value</th>
-								<th>Summary</th>
-							</tr>
-						</thead>
-							<tbody><tr>
-								<td><a href="/BBT.Maybe/api/BBT.MaybePattern/MaybeStruct_1/37E19222">HasValue</a></td>
-								<td>bool</td>
-								<td>
-									<div>
-    Gets a value indicating whether <code class="cs"><a href="/BBT.Maybe/api/BBT.MaybePattern/Maybe">Maybe</a></code> has a value (true)
-    or is representing the null case (false).
-    </div>
-								</td>
-							</tr>
-					</tbody></table>
-				</div>
-			</div>
-		
-
-			<h1 id="Methods">Methods</h1>
-			<div class="box">
-				<div class="box-body no-padding table-responsive">
-					<table class="table table-striped table-hover three-cols">
-						<thead>
-							<tr>
-								<th>Name</th>
-								<th>Value</th>
-								<th>Summary</th>
-							</tr>
-						</thead>
-							<tbody><tr>
-								<td><a href="/BBT.Maybe/api/BBT.MaybePattern/MaybeStruct_1/37735493">Do<wbr>(Action<wbr>&lt;T&gt;<wbr>)<wbr></a></td>
-								<td><a href="/BBT.Maybe/api/BBT.MaybePattern/NoneCase">NoneCase</a></td>
-								<td>
-									<div>
-    Starts <span name="doAction" class="paramref">doAction</span> if value is not null.
-    </div>
-								</td>
-							</tr>
-							<tr>
-								<td><a href="/BBT.Maybe/api/BBT.MaybePattern/MaybeStruct_1/8497DAB6">Equals<wbr>(MaybeStruct<wbr>&lt;T&gt;<wbr>)<wbr></a></td>
-								<td>bool</td>
-								<td>
-									<div></div>
-								</td>
-							</tr>
-							<tr>
-								<td><a href="/BBT.Maybe/api/BBT.MaybePattern/MaybeStruct_1/564C0C5D">Equals<wbr>(object)<wbr></a></td>
-								<td>bool</td>
-								<td>
-									<div></div>
-								</td>
-							</tr>
-							<tr>
-								<td><a href="/BBT.Maybe/api/BBT.MaybePattern/MaybeStruct_1/22348147">GetHashCode<wbr>()<wbr></a></td>
-								<td>int</td>
-								<td>
-									<div></div>
-								</td>
-							</tr>
-							<tr>
-								<td><a href="/BBT.Maybe/api/BBT.MaybePattern/MaybeStruct_1/31D0D32C">GetObjectData<wbr>(SerializationInfo, <wbr>StreamingContext)<wbr></a></td>
-								<td>void</td>
-								<td>
-									<div></div>
-								</td>
-							</tr>
-							<tr>
-								<td><a href="/BBT.Maybe/api/BBT.MaybePattern/MaybeStruct_1/77ACF4A6">Some<wbr>&lt;TResult&gt;<wbr><wbr>(Func<wbr>&lt;T, <wbr>Maybe<wbr>&lt;TResult&gt;<wbr>&gt;<wbr>)<wbr></a></td>
-								<td><a href="/BBT.Maybe/api/BBT.MaybePattern/Maybe_1">Maybe</a><wbr>&lt;TResult&gt;<wbr></td>
-								<td>
-									<div>
-    Gets the <code class="cs"><a href="/BBT.Maybe/api/BBT.MaybePattern/Maybe_1">Maybe&lt;T&gt;</a></code> of the projection function <span name="func" class="paramref">func</span>.
-    </div>
-								</td>
-							</tr>
-							<tr>
-								<td><a href="/BBT.Maybe/api/BBT.MaybePattern/MaybeStruct_1/C6DFFD67">Some<wbr>&lt;TResult&gt;<wbr><wbr>(Func<wbr>&lt;T, <wbr>TResult&gt;<wbr>)<wbr></a></td>
-								<td><a href="/BBT.Maybe/api/BBT.MaybePattern/Maybe_1">Maybe</a><wbr>&lt;TResult&gt;<wbr></td>
-								<td>
-									<div>
-    Gets the <code class="cs"><a href="/BBT.Maybe/api/BBT.MaybePattern/Maybe_1">Maybe&lt;T&gt;</a></code> of the projection function <span name="func" class="paramref">func</span>.
-    </div>
-								</td>
-							</tr>
-							<tr>
-								<td><a href="/BBT.Maybe/api/BBT.MaybePattern/MaybeStruct_1/2C6438FC">SomeStruct<wbr>&lt;TResult&gt;<wbr><wbr>(Func<wbr>&lt;T, <wbr>MaybeStruct<wbr>&lt;TResult&gt;<wbr>&gt;<wbr>)<wbr></a></td>
-								<td><a href="/BBT.Maybe/api/BBT.MaybePattern/MaybeStruct_1">MaybeStruct</a><wbr>&lt;TResult&gt;<wbr></td>
-								<td>
-									<div>
-    Gets the <code class="cs"><a href="/BBT.Maybe/api/BBT.MaybePattern/MaybeStruct_1">MaybeStruct&lt;T&gt;</a></code> of the projection function <span name="func" class="paramref">func</span>.
-    </div>
-								</td>
-							</tr>
-							<tr>
-								<td><a href="/BBT.Maybe/api/BBT.MaybePattern/MaybeStruct_1/531A828D">SomeStruct<wbr>&lt;TResult&gt;<wbr><wbr>(Func<wbr>&lt;T, <wbr>TResult?&gt;<wbr>)<wbr></a></td>
-								<td><a href="/BBT.Maybe/api/BBT.MaybePattern/MaybeStruct_1">MaybeStruct</a><wbr>&lt;TResult&gt;<wbr></td>
-								<td>
-									<div>
-    Gets the <code class="cs"><a href="/BBT.Maybe/api/BBT.MaybePattern/MaybeStruct_1">MaybeStruct&lt;T&gt;</a></code> of the projection function <span name="func" class="paramref">func</span>.
-    </div>
-								</td>
-							</tr>
-							<tr>
-								<td><a href="/BBT.Maybe/api/BBT.MaybePattern/MaybeStruct_1/C32D696F">ToString<wbr>()<wbr></a></td>
-								<td>string</td>
-								<td>
-									<div></div>
-								</td>
-							</tr>
-							<tr>
-								<td><a href="/BBT.Maybe/api/BBT.MaybePattern/MaybeStruct_1/441DF04C">ValueOrDefault<wbr>(T)<wbr></a></td>
-								<td><a href="/BBT.Maybe/api/BBT.MaybePattern/MaybeStruct_1#typeparam-T">T</a></td>
-								<td>
-									<div>
-    Returns the value in case it is initialized.
-    Otherwise <span name="defaultValue" class="paramref">defaultValue</span> is returned.
-    </div>
-								</td>
-							</tr>
-							<tr>
-								<td><a href="/BBT.Maybe/api/BBT.MaybePattern/MaybeStruct_1/9088CA48">ValueOrException<wbr>(string, <wbr>string)<wbr></a></td>
-								<td><a href="/BBT.Maybe/api/BBT.MaybePattern/MaybeStruct_1#typeparam-T">T</a></td>
-								<td>
-									<div>
-    Returns the value in case it is initialized.
-    Otherwise throws an <code class="cs">System.InvalidOperationException</code>.
-    </div>
-								</td>
-							</tr>
-					</tbody></table>
-				</div>
-			</div>
-		
-
-			<h1 id="Operators">Operators</h1>
-			<div class="box">
-				<div class="box-body no-padding table-responsive">
-					<table class="table table-striped table-hover three-cols">
-						<thead>
-							<tr>
-								<th>Name</th>
-								<th>Value</th>
-								<th>Summary</th>
-							</tr>
-						</thead>
-							<tbody><tr>
-								<td>operator !=<wbr>(MaybeStruct<wbr>&lt;T&gt;<wbr>, <wbr>MaybeStruct<wbr>&lt;T&gt;<wbr>)<wbr></td>
-								<td>bool</td>
-								<td>
-									<div></div>
-								</td>
-							</tr>
-							<tr>
-								<td>operator ==<wbr>(MaybeStruct<wbr>&lt;T&gt;<wbr>, <wbr>MaybeStruct<wbr>&lt;T&gt;<wbr>)<wbr></td>
-								<td>bool</td>
-								<td>
-									<div></div>
-								</td>
-							</tr>
-					</tbody></table>
-				</div>
-			</div>
-		
+	<h1 id="ReturnValue">Return Value</h1>
+	<div class="box">
+		<div class="box-body no-padding table-responsive">
+			<table class="table table-striped table-hover two-cols">
+				<thead>
+					<tr>
+						<th>Type</th>
+						<th>Description</th>
+					</tr>
+				</thead>
+				<tbody><tr>
+					<td><a href="/BBT.Maybe/api/BBT.MaybePattern/Maybe_1">Maybe</a><wbr>&lt;TResult&gt;<wbr></td>
+					<td>The projected maybe.</td>
+				</tr>
+			</tbody></table>
+		</div>
+	</div>	
 
 
 	

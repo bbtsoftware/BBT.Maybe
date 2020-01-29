@@ -39,14 +39,14 @@ var searchModule = function() {
     a(
         {
             id:0,
-            title:"Maybe",
-            content:"Maybe",
+            title:"MaybeStruct",
+            content:"MaybeStruct",
             description:'',
             tags:''
         },
         {
-            url:'/BBT.Maybe/api/BBT.MaybePattern/Maybe_1',
-            title:"Maybe<T>",
+            url:'/BBT.Maybe/api/BBT.MaybePattern/MaybeStruct_1',
+            title:"MaybeStruct<T>",
             description:""
         }
     );
@@ -67,14 +67,14 @@ var searchModule = function() {
     a(
         {
             id:2,
-            title:"MaybeStruct",
-            content:"MaybeStruct",
+            title:"Maybe",
+            content:"Maybe",
             description:'',
             tags:''
         },
         {
-            url:'/BBT.Maybe/api/BBT.MaybePattern/MaybeStruct_1',
-            title:"MaybeStruct<T>",
+            url:'/BBT.Maybe/api/BBT.MaybePattern/Maybe_1',
+            title:"Maybe<T>",
             description:""
         }
     );
