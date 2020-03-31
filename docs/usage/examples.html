@@ -77,7 +77,6 @@
 <p><a href="#optional-properties">Optional properties</a></p>
 <p><a href="#optional-method-arguments">Optional method arguments</a></p>
 <p><a href="#projection-method">Projection method</a></p>
-<p><a href="#assertion">Assertion</a></p>
 <hr class="infobar-hidden">
 </div>
 
@@ -162,37 +161,12 @@ public class Data()
     public Maybe&lt;Bar&gt; MaybeBar { get; set; }
 }
 </code></pre>
-<p>If a default value is needed, for example when specifying a file extension, the value can be encapsulated by a <code><a href="/BBT.Maybe/api/BBT.MaybePattern/Maybe">Maybe</a></code> as well:</p>
-<pre><code class="language-csharp">public class Data()
-{
-    public Data(Foo foo, Maybe&lt;string&gt; maybeFileExtension)
-    {
-        Foo = foo;
-        // If a file extension is specified the value from the <a href="/BBT.Maybe/api/BBT.MaybePattern/Maybe">Maybe</a> is used
-        // If no value is provided by the <a href="/BBT.Maybe/api/BBT.MaybePattern/Maybe">Maybe</a> the FileExtension is set to ".txt"
-        FileExtension = maybeFileExtension.ValueOrDefault(".txt");
-    }
-
-    public Foo { get; }
-    public string FileExtension { get; }
-}
-</code></pre>
 <h1 id="optional-method-arguments">Optional method arguments</h1>
 <p>Maybe can be declared as optional method arguments using the default keyword.</p>
-<pre><code class="language-csharp">/// maybeBar is an optional parameter. Maybe.None&lt;Bar&gt;() is the default value.
+<pre><code class="language-csharp">/// maybeBar is an optional parameter. Maybe.None&lt;Bar&gt;() is default.
 public void Foo(Maybe&lt;Bar&gt; maybeBar = default)
 {
     maybeBar.Do(x =&gt; x.Bar());
-}
-</code></pre>
-<p>It's also possible to retrieve the value (or a default value) from the <code><a href="/BBT.Maybe/api/BBT.MaybePattern/Maybe">Maybe</a></code> in a method:</p>
-<pre><code class="language-csharp">private readonly defaultBar = new Bar();
-
-/// maybeBar is an optional parameter. Maybe.None&lt;Bar&gt;() is the default value.
-/// By using ValueOrDefault a default instance of the Bar class can be used.
-public void Foo(Maybe&lt;Bar&gt; maybeBar = default)
-{
-    var bar = maybeBar.ValueOrDefault(this.defaultBar);
 }
 </code></pre>
 <h1 id="projection-method">Projection method</h1>
@@ -210,15 +184,6 @@ public class Foo()
 <p>Maybe.Some(foo) is the factory method call for the creation of the maybe of type Foo.
 The second call Some(x =&gt; x.Bar) is the projection method projecting the Foo maybe to a maybe of its property type Bar.
 Therefore projections of cascades of properties can be done without the need of null checks or null propagation.</p>
-<h1 id="assertion">Assertion</h1>
-<p>A <code><a href="/BBT.Maybe/api/BBT.MaybePattern/Maybe">Maybe</a></code> can be asserted to have a value by calling <code>ValueOrException</code>:</p>
-<pre><code class="language-csharp">/// maybeBar may or may not have a value.
-public void Foo(Maybe&lt;Bar&gt; maybeBar)
-{
-    // If maybeBar doesn't have a value an exception is thrown.
-    var bar = maybeBar.ValueOrException(nameof(maybeBar));
-}
-</code></pre>
 
 	</section>
                 
