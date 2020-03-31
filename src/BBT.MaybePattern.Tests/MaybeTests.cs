@@ -20,7 +20,7 @@
 
                 // Act & Assert
                 maybe.HasValue.ShouldBeTrue();
-                var value = maybe.ThrowExceptionIfNone(nameof(maybe));
+                var value = maybe.ValueOrException(nameof(maybe));
                 value.ShouldBe(baseClass);
             }
 
@@ -57,7 +57,7 @@
 
                 // Assert
                 maybe.HasValue.ShouldBeTrue();
-                var value = maybe.ThrowExceptionIfNone(nameof(maybe));
+                var value = maybe.ValueOrException(nameof(maybe));
                 value.ShouldBe(baseClass);
             }
         }
@@ -127,6 +127,68 @@
 
                 // Assert
                 maybeReferencingClass.ShouldBe(Maybe.None<BaseClass>());
+            }
+
+            [Fact]
+            public void Called_With_Projection_Func_To_Maybe_Type_Should_Return_Maybe_Of_Type_Maybe_Type()
+            {
+                // Arrange
+                var referencedClass = new ReferencedClass();
+                var referencingClass = new BaseClass();
+                referencedClass.ReferencingClass = referencingClass;
+
+                // Act
+                var maybeReferencingClass = Maybe.Some(referencedClass).Some(x => Maybe.Some(x.ReferencingClass));
+
+                // Assert
+                maybeReferencingClass.ShouldBe(Maybe.Some<BaseClass>(referencingClass));
+            }
+        }
+
+        public sealed class TheSomeStructMethod
+        {
+            [Fact]
+            public void Called_With_Projection_Func_To_Not_Null_Referencing_Struct_Should_Return_Some_Maybe_Of_Type_Referencing_Struct()
+            {
+                // Arrange
+                var referencedClass = new ReferencedClass();
+                var referencingStruct = default(BaseStruct);
+                referencedClass.ReferencingStruct = referencingStruct;
+
+                // Act
+                var maybeReferencingStruct = Maybe.Some(referencedClass)
+                    .SomeStruct<BaseStruct>(x => x.ReferencingStruct);
+
+                // Assert
+                maybeReferencingStruct.ShouldBe(Maybe.SomeStruct<BaseStruct>(referencingStruct));
+            }
+
+            [Fact]
+            public void Called_With_Projection_Func_To_Null_Referencing_Class_Should_Return_None_Maybe_Of_Type_Referencing_Class()
+            {
+                // Arrange
+                var maybeReferencedClass = Maybe.None<ReferencedClass>();
+
+                // Act
+                var maybeReferencingStruct = maybeReferencedClass.SomeStruct<BaseStruct>(x => x.ReferencingStruct);
+
+                // Assert
+                maybeReferencingStruct.ShouldBe(Maybe.NoneStruct<BaseStruct>());
+            }
+
+            [Fact]
+            public void Called_With_Projection_Func_To_Maybe_Type_Should_Return_Maybe_Of_Type_Maybe_Type()
+            {
+                // Arrange
+                var referencedClass = new ReferencedClass();
+                var referencingStruct = default(BaseStruct);
+                referencedClass.ReferencingStruct = referencingStruct;
+
+                // Act
+                var maybeReferencingStruct = Maybe.Some(referencedClass).SomeStruct(x => Maybe.SomeStruct<BaseStruct>(x.ReferencingStruct));
+
+                // Assert
+                maybeReferencingStruct.ShouldBe(Maybe.SomeStruct<BaseStruct>(referencingStruct));
             }
         }
 
@@ -284,7 +346,38 @@
             }
         }
 
-        public sealed class TheThrowExceptionIfNoneMethod
+        public sealed class TheValueOrDefaultMethod
+        {
+            [Fact]
+            public void Should_Return_Value_If_Called_For_None_Mabye()
+            {
+                // Arrange
+                var maybe = Maybe.None<BaseClass>();
+                var baseClass = new BaseClass();
+
+                // Act
+                var result = maybe.ValueOrDefault(baseClass);
+
+                // Assert
+                result.ShouldBe(baseClass);
+            }
+
+            [Fact]
+            public void Should_Return_Value_If_Called_For_Some_Mabye()
+            {
+                // Arrange
+                var baseClass = new BaseClass();
+                var maybe = Maybe.Some(baseClass);
+
+                // Act
+                var result = maybe.ValueOrDefault(new BaseClass());
+
+                // Assert
+                result.ShouldBe(baseClass);
+            }
+        }
+
+        public sealed class TheValueOrExceptionMethod
         {
             [Fact]
             public void Should_Throw_InvalidOperationException_If_Called_For_None_Mabye()
@@ -293,7 +386,7 @@
                 var maybeNone = Maybe.None<BaseClass>();
 
                 // Act
-                var exception = Record.Exception(() => maybeNone.ThrowExceptionIfNone(nameof(maybeNone)));
+                var exception = Record.Exception(() => maybeNone.ValueOrException(nameof(maybeNone)));
 
                 // Assert
                 exception.ShouldBeOfType<InvalidOperationException>();
@@ -308,7 +401,7 @@
                 var maybeNone = Maybe.Some<BaseClass>(baseClass);
 
                 // Act
-                var result = maybeNone.ThrowExceptionIfNone(nameof(maybeNone));
+                var result = maybeNone.ValueOrException(nameof(maybeNone));
 
                 // Assert
                 result.ShouldBe(baseClass);
