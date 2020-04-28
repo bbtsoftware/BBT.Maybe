@@ -380,7 +380,21 @@
         public sealed class TheValueOrExceptionMethod
         {
             [Fact]
-            public void Should_Throw_InvalidOperationException_If_Called_For_None_Mabye()
+            public void Should_Throw_InvalidOperationException_With_TypeName_If_Called_Without_Args_For_None_Mabye()
+            {
+                // Arrange
+                var maybeNone = Maybe.None<BaseClass>();
+
+                // Act
+                var exception = Record.Exception(() => maybeNone.ValueOrException());
+
+                // Assert
+                exception.ShouldBeOfType<InvalidOperationException>();
+                exception.Message.ShouldContain(nameof(BaseClass));
+            }
+
+            [Fact]
+            public void Should_Throw_InvalidOperationException_If_Called_With_Args_For_None_Mabye()
             {
                 // Arrange
                 var maybeNone = Maybe.None<BaseClass>();
