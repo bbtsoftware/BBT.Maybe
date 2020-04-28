@@ -34,7 +34,7 @@
         /// <param name="context">The streaming context.</param>
         internal MaybeStruct(SerializationInfo info, StreamingContext context)
         {
-            this.value = MaybeUtils.GetDeserializedValue<T>(info, nameof(this.value));
+            this.value = MaybeUtils.GetDeserializedValue<T?>(info, nameof(this.value));
         }
 
         /// <summary>
