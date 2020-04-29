@@ -34,7 +34,7 @@
         /// <param name="context">The streaming context.</param>
         internal MaybeStruct(SerializationInfo info, StreamingContext context)
         {
-            this.value = MaybeUtils.GetDeserializedValue<T>(info, nameof(this.value));
+            this.value = MaybeUtils.GetDeserializedValue<T?>(info, nameof(this.value));
         }
 
         /// <summary>
@@ -171,10 +171,16 @@
         /// <param name="additionalMessage">Additional error message.</param>
         /// <returns>The value.</returns>
         public T ValueOrException(
-            string maybeParameterName,
+            string maybeParameterName = "",
             string additionalMessage = "")
         {
-            return MaybeUtils.CheckParameterNotNull(this.value, maybeParameterName, additionalMessage)
+            var parameterName = maybeParameterName;
+            if (string.IsNullOrEmpty(maybeParameterName))
+            {
+                parameterName = typeof(T).Name;
+            }
+
+            return MaybeUtils.CheckParameterNotNull(this.value, parameterName, additionalMessage)
                 .Value;
         }
 
