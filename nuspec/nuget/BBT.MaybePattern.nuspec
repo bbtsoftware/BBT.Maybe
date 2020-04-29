@@ -9,7 +9,7 @@
     <summary>An option type for .NET.</summary>
     <description>An option type for .NET.</description>
     <license type="expression">MIT</license>
-    <projectUrl>https://github.com/bbtsoftware/BBT.Maybe/</projectUrl>
+    <projectUrl>https://bbtsoftware.github.io/BBT.Maybe/</projectUrl>
     <icon>icon.png</icon>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <repository type="git" url="https://github.com/bbtsoftware/BBT.Maybe.git"/>
