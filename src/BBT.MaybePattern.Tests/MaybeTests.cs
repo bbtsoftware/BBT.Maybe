@@ -485,6 +485,36 @@
             }
         }
 
+        public sealed class TheImplicitOperator
+        {
+            [Fact]
+            public void Should_Return_Some_Maybe_If_Assigned_With_Some()
+            {
+                // Arrange
+                var some = new BaseClass();
+
+                // Act
+                Maybe<BaseClass> maybeSome = some;
+
+                // Assert
+                maybeSome.ShouldBeOfType<Maybe<BaseClass>>();
+                maybeSome.HasValue.ShouldBeTrue();
+                maybeSome.ValueOrException().ShouldBe(some);
+            }
+
+            [Fact]
+            public void Should_Return_None_Maybe_If_Assigned_With_Null()
+            {
+                // Act
+                Maybe<BaseClass> maybeNone = null;
+
+                // Assert
+                maybeNone.ShouldBeOfType<Maybe<BaseClass>>();
+                maybeNone.HasValue.ShouldBeFalse();
+                maybeNone.ShouldBe(Maybe.None<BaseClass>());
+            }
+        }
+
         public sealed class TheGetHashCodeMethod
         {
             [Fact]
