@@ -1,5 +1,4 @@
 ---
-Order: 20
 Title: Examples
 Description: Example usage of BBT.Maybe
 ---

@@ -1,5 +1,4 @@
 ---
-Order: 20
 Title: Core principles
 Description: Core principles of BBT.Maybe
 ---

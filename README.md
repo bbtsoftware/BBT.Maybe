@@ -1,6 +1,6 @@
 # BBT.Maybe
 
-An option type for .NET.
+An option type implementation for .NET
 
 [![License](http://img.shields.io/:license-mit-blue.svg)](https://github.com/bbtsoftware/BBT.Maybe/blob/master/LICENSE)
 
@@ -21,9 +21,21 @@ An option type for .NET.
 
 [![Coverage Status](https://coveralls.io/repos/github/bbtsoftware/BBT.Maybe/badge.svg?branch=develop)](https://coveralls.io/github/bbtsoftware/BBT.Maybe?branch=develop)
 
-## Quick Links
+## Documentation
 
-* [Documentation](https://bbtsoftware.github.io/BBT.Maybe/)
+### Getting started
+
+Overview about the features of BBT.Maybe.
+
+* [Why does BBT.Maybe exist?](docs\input\docs\getting-started\whymaybe.md)
+* [Core principles](docs\input\docs\getting-started\principles.md)
+
+### Usage
+
+How to obtain, configure, and use BBT.Maybe.
+
+* [Obtain](docs\usage\obtain.md)
+* [Examples](docs\usage\examples.md)
 
 ## Build
 

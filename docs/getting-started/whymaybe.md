@@ -1,5 +1,4 @@
 ---
-Order: 10
 Title: Why does BBT.Maybe exist?
 Description: Introduction to BBT.Maybe, what problems are solved and how it's distinctive from other functional option type implementations
 ---
