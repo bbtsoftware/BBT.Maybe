@@ -1,25 +1,13 @@
 # BBT.Maybe
 
-An option type implementation for .NET
+[![NuGet](https://img.shields.io/nuget/v/BBT.Maybe.svg)](https://www.nuget.org/packages/BBT.Maybe)
+[![Build status](https://github.com/bbtsoftware/BBT.Maybe/actions/workflows/dotnet.yml/badge.svg?branch=develop)](https://github.com/bbtsoftware/TfsUrlParser/actions/workflows/dotnet.yml)
+[![Build status](https://github.com/bbtsoftware/BBT.Maybe/actions/workflows/release.yml/badge.svg)](https://github.com/bbtsoftware/BBT.Maybe/actions/workflows/release.yml)
+[![Coverage Status](https://codecov.io/gh/bbtsoftware/BBT.Maybe/branch/develop/graph/badge.svg?token=0VLbB8a8EF)](https://codecov.io/gh/bbtsoftware/BBT.Maybe)
+
+An option type implementation for .NET.
 
 [![License](http://img.shields.io/:license-mit-blue.svg)](https://github.com/bbtsoftware/BBT.Maybe/blob/master/LICENSE)
-
-## Information
-
-| | Stable | Pre-release |
-|:--:|:--:|:--:|
-|GitHub Release|-|[![GitHub release](https://img.shields.io/github/release/bbtsoftware/BBT.Maybe.svg)](https://github.com/bbtsoftware/BBT.Maybe/releases/latest)|
-|NuGet|[![NuGet](https://img.shields.io/nuget/v/BBT.Maybe.svg)](https://www.nuget.org/packages/BBT.Maybe)|[![NuGet](https://img.shields.io/nuget/vpre/BBT.Maybe.svg)](https://www.nuget.org/packages/BBT.Maybe)|
-
-## Build Status
-
-|Develop|Master|
-|:--:|:--:|
-|[![Build status](https://ci.appveyor.com/api/projects/status/vo6s6rr35xq9pk7h/branch/develop?svg=true)](https://ci.appveyor.com/project/BBTSoftwareAG/bbt-maybe/branch/develop)|[![Build status](https://ci.appveyor.com/api/projects/status/vo6s6rr35xq9pk7h/branch/master?svg=true)](https://ci.appveyor.com/project/BBTSoftwareAG/bbt-maybe/branch/master)|
-
-## Code Coverage
-
-[![Coverage Status](https://coveralls.io/repos/github/bbtsoftware/BBT.Maybe/badge.svg?branch=develop)](https://coveralls.io/github/bbtsoftware/BBT.Maybe?branch=develop)
 
 ## Documentation
 
@@ -27,15 +15,15 @@ An option type implementation for .NET
 
 Overview about the features of BBT.Maybe.
 
-* [Why does BBT.Maybe exist?](docs\input\docs\getting-started\whymaybe.md)
-* [Core principles](docs\input\docs\getting-started\principles.md)
+* [Why does BBT.Maybe exist?](./docs/getting-started/whymaybe.md)
+* [Core principles](./docs/getting-started/principles.md)
 
 ### Usage
 
 How to obtain, configure, and use BBT.Maybe.
 
-* [Obtain](docs\usage\obtain.md)
-* [Examples](docs\usage\examples.md)
+* [Obtain](./docs/usage/obtain.md)
+* [Examples](./docs/usage/examples.md)
 
 ## Build
 

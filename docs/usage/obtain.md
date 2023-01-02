@@ -1,9 +1,6 @@
----
-Title: Obtain
-Description: Obtain BBT.Maybe
----
+# Obtain
 
-# NuGet
+## NuGet
 
 Release and Beta versions of BBT.Maybe are available from [nuget.org](https://www.nuget.org/packages/BBT.Maybe)
 
