@@ -27,10 +27,4 @@ An option type for .NET.
 
 ## Build
 
-To build this package we are using Cake.
-
-On Windows PowerShell run:
-
-```powershell
-./build
-```
+`dotnet build .\src\BBT.Maybe.sln`
