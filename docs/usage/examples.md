@@ -1,10 +1,6 @@
----
-Order: 20
-Title: Examples
-Description: Example usage of BBT.Maybe
----
+# Examples
 
-# Usage of factory methods
+## Usage of factory methods
 
 Maybe values are created using factory methods provided by Maybe. Methods with arguments for reference are available (`Maybe.Some<T>(T)`).
 For the none case parameterless methods can be used (`Maybe.None<T>()`).
@@ -26,7 +22,7 @@ var maybeNumber = Maybe.SomeStruct<int>(number);
 var maybeNumber2 = Maybe.NoneStruct<int>();
 ```
 
-# Maybe methods
+## Maybe methods
 
 Instead of direct access to a reference type variable, `Maybe<T>.Do(Action<T>)` is used to declare an action which is called in case the referenced value is instantiated. The `NoneCase.DoIfNone(Action)` method of its return value can be used to declare an action which is called if the referenced value is not instantiated.
 
@@ -37,7 +33,7 @@ Maybe.Some(foo)
     .DoIfNone(() => Console.WriteLine("No value set"));
 ```
 
-# Optional properties
+## Optional properties
 
 Maybe is useful for optional properties. The default implementation of maybe represents the null case, therefore optional properties of type `Maybe<T>` are representing the null case too and must not be initialized.
 
@@ -73,7 +69,7 @@ public class Data()
 }
 ```
 
-# Optional method arguments
+## Optional method arguments
 
 Maybe can be declared as optional method arguments using the default keyword.
 
@@ -98,7 +94,7 @@ public void Foo(Maybe<Bar> maybeBar = default)
 }
 ```
 
-# Projection method
+## Projection method
 
 Maybe provides a projection method (`Maybe<T>.Some<TResult>(Func<T, TResult>)`) with an argument of type Func<T, TResult>.
 The usage is similar to the null propagation operator.
@@ -121,7 +117,7 @@ Maybe.Some(foo) is the factory method call for the creation of the maybe of type
 The second call Some(x => x.Bar) is the projection method projecting the Foo maybe to a maybe of its property type Bar.
 Therefore projections of cascades of properties can be done without the need of null checks or null propagation.
 
-# Assertion
+## Assertion
 
 A `Maybe` can be asserted to have a value by calling `ValueOrException`:
 
