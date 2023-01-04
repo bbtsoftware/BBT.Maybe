@@ -297,7 +297,7 @@
             {
                 // Arrange
                 var maybe = Maybe.NoneStruct<BaseStruct>();
-                var otherType = new BaseStruct();
+                var otherType = new ReferencedStruct();
 
                 // Act
                 var isEqual = maybe.Equals(otherType);
@@ -443,6 +443,36 @@
 
                 // Assert
                 isNotEqual.ShouldBeTrue();
+            }
+        }
+
+        public sealed class TheImplicitOperator
+        {
+            [Fact]
+            public void Should_Return_Some_MaybeStruct_If_Assigned_With_Some_Struct()
+            {
+                // Arrange
+                var someStruct = new BaseStruct();
+
+                // Act
+                MaybeStruct<BaseStruct> maybeSomeStruct = someStruct;
+
+                // Assert
+                maybeSomeStruct.ShouldBeOfType<MaybeStruct<BaseStruct>>();
+                maybeSomeStruct.HasValue.ShouldBeTrue();
+                maybeSomeStruct.ValueOrException().ShouldBe(someStruct);
+            }
+
+            [Fact]
+            public void Should_Return_None_Maybe_If_Assigned_With_Null()
+            {
+                // Act
+                MaybeStruct<BaseStruct> maybeNone = null;
+
+                // Assert
+                maybeNone.ShouldBeOfType<MaybeStruct<BaseStruct>>();
+                maybeNone.HasValue.ShouldBeFalse();
+                maybeNone.ShouldBe(Maybe.NoneStruct<BaseStruct>());
             }
         }
 

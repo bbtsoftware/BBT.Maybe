@@ -1,36 +1,30 @@
 # BBT.Maybe
 
-An option type for .NET.
+[![NuGet](https://img.shields.io/nuget/v/BBT.Maybe.svg)](https://www.nuget.org/packages/BBT.Maybe)
+[![Build status](https://github.com/bbtsoftware/BBT.Maybe/actions/workflows/dotnet.yml/badge.svg?branch=develop)](https://github.com/bbtsoftware/TfsUrlParser/actions/workflows/dotnet.yml)
+[![Build status](https://github.com/bbtsoftware/BBT.Maybe/actions/workflows/release.yml/badge.svg)](https://github.com/bbtsoftware/BBT.Maybe/actions/workflows/release.yml)
+[![Coverage Status](https://codecov.io/gh/bbtsoftware/BBT.Maybe/branch/develop/graph/badge.svg?token=0VLbB8a8EF)](https://codecov.io/gh/bbtsoftware/BBT.Maybe)
+
+An option type implementation for .NET.
 
 [![License](http://img.shields.io/:license-mit-blue.svg)](https://github.com/bbtsoftware/BBT.Maybe/blob/master/LICENSE)
 
-## Information
+## Documentation
 
-| | Stable | Pre-release |
-|:--:|:--:|:--:|
-|GitHub Release|-|[![GitHub release](https://img.shields.io/github/release/bbtsoftware/BBT.Maybe.svg)](https://github.com/bbtsoftware/BBT.Maybe/releases/latest)|
-|NuGet|[![NuGet](https://img.shields.io/nuget/v/BBT.Maybe.svg)](https://www.nuget.org/packages/BBT.Maybe)|[![NuGet](https://img.shields.io/nuget/vpre/BBT.Maybe.svg)](https://www.nuget.org/packages/BBT.Maybe)|
+### Getting started
 
-## Build Status
+Overview about the features of BBT.Maybe.
 
-|Develop|Master|
-|:--:|:--:|
-|[![Build status](https://ci.appveyor.com/api/projects/status/vo6s6rr35xq9pk7h/branch/develop?svg=true)](https://ci.appveyor.com/project/BBTSoftwareAG/bbt-maybe/branch/develop)|[![Build status](https://ci.appveyor.com/api/projects/status/vo6s6rr35xq9pk7h/branch/master?svg=true)](https://ci.appveyor.com/project/BBTSoftwareAG/bbt-maybe/branch/master)|
+* [Why does BBT.Maybe exist?](./docs/getting-started/whymaybe.md)
+* [Core principles](./docs/getting-started/principles.md)
 
-## Code Coverage
+### Usage
 
-[![Coverage Status](https://coveralls.io/repos/github/bbtsoftware/BBT.Maybe/badge.svg?branch=develop)](https://coveralls.io/github/bbtsoftware/BBT.Maybe?branch=develop)
+How to obtain, configure, and use BBT.Maybe.
 
-## Quick Links
-
-* [Documentation](https://bbtsoftware.github.io/BBT.Maybe/)
+* [Obtain](./docs/usage/obtain.md)
+* [Examples](./docs/usage/examples.md)
 
 ## Build
 
-To build this package we are using Cake.
-
-On Windows PowerShell run:
-
-```powershell
-./build
-```
+`dotnet build .\src\BBT.Maybe.sln`

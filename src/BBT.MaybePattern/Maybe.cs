@@ -44,6 +44,12 @@
         public bool HasValue => this.value != null;
 
         /// <summary>
+        /// Implicit conversion from reference type to maybe.
+        /// </summary>
+        /// <param name="value">the reference type object or null.</param>
+        public static implicit operator Maybe<T>(T value) => new Maybe<T>(value);
+
+        /// <summary>
         /// Checks whether the operands are equal.
         /// </summary>
         /// <param name="a">Maybe to compare.</param>

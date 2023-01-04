@@ -44,6 +44,12 @@
         public bool HasValue => this.value.HasValue;
 
         /// <summary>
+        /// Implicit conversion from struct to maybe.
+        /// </summary>
+        /// <param name="value">the struct or null.</param>
+        public static implicit operator MaybeStruct<T>(T? value) => new MaybeStruct<T>(value);
+
+        /// <summary>
         /// Checks whether the operands are equal.
         /// </summary>
         /// <param name="a">Maybe to compare.</param>
