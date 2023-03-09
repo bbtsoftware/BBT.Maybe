@@ -55,4 +55,4 @@ jobs:
         run: dotnet pack -c $BUILD_CONFIG -p:PackageVersion=$BUILD_VERSION
 
       - name: Publish NuGet
-        run: nuget push ./BBT.MaybePattern/bin/Release/BBT.MaybePattern.$BUILD_VERSION.nupkg -Source 'https://api.nuget.org/v3/index.json' -ApiKey ${{secrets.NUGETORG}}
+        run: nuget push ./BBT.MaybePattern/bin/Release/BBT.Maybe.$BUILD_VERSION.nupkg -Source 'https://api.nuget.org/v3/index.json' -ApiKey ${{secrets.NUGETORG}}
