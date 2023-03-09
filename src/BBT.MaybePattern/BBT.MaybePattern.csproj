@@ -3,14 +3,26 @@
   <PropertyGroup>
     <TargetFrameworks>netstandard2.0;net6.0</TargetFrameworks>
     <AssemblyTitle>BBT.MaybePattern</AssemblyTitle>
-    <Company>BBT Software AG</Company>
-    <Product>BBT.Maybe</Product>
-    <Description>An option type for .NET</Description>
-    <Copyright>Copyright © BBT Software AG</Copyright>
     <CodeAnalysisRuleSet>..\BBT.MaybePattern.ruleset</CodeAnalysisRuleSet>
     <DocumentationFile>bin\$(Configuration)\BBT.MaybePattern.XML</DocumentationFile>
     <OutputPath>bin\$(Configuration)\</OutputPath>
     <DebugSymbols>true</DebugSymbols>
+  </PropertyGroup>
+  
+  <PropertyGroup>
+    <Title>BBT.MaybePattern</Title>
+    <Description>An option type for .NET</Description>
+    <Product>BBT.MaybePattern</Product>
+    <Company>BBT Software AG</Company>
+    <Authors>BBT Software AG</Authors>
+    <Copyright>Copyright © BBT Software AG</Copyright>
+    <PackageTags>Maybe Functional</PackageTags>
+    <PackageIcon>icon.png</PackageIcon>
+    <PackageProjectUrl>https://github.com/bbtsoftware/BBT.Maybe/</PackageProjectUrl>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <RepositoryType>git</RepositoryType>
+    <RepositoryUrl>https://github.com/bbtsoftware/BBT.Maybe.git</RepositoryUrl>
+    <PackageReleaseNotes>https://github.com/bbtsoftware/BBT.Maybe/releases/tag/3.1.1</PackageReleaseNotes>
   </PropertyGroup>
 
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
