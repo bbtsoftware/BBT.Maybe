@@ -4,25 +4,28 @@
     <TargetFrameworks>netstandard2.0;net6.0</TargetFrameworks>
     <AssemblyTitle>BBT.MaybePattern</AssemblyTitle>
     <CodeAnalysisRuleSet>..\BBT.MaybePattern.ruleset</CodeAnalysisRuleSet>
-    <DocumentationFile>bin\$(Configuration)\BBT.MaybePattern.XML</DocumentationFile>
+    <DocumentationFile>bin\$(Configuration)\BBT.MaybePattern.xml</DocumentationFile>
     <OutputPath>bin\$(Configuration)\</OutputPath>
     <DebugSymbols>true</DebugSymbols>
   </PropertyGroup>
   
   <PropertyGroup>
-    <Title>BBT.MaybePattern</Title>
-    <Description>An option type for .NET</Description>
-    <Product>BBT.MaybePattern</Product>
+    <Title>BBT Maybe</Title>
+    <Description>An option type for .NET.</Description>
+    <Product>BBT.Maybe</Product>
     <Company>BBT Software AG</Company>
     <Authors>BBT Software AG</Authors>
     <Copyright>Copyright © BBT Software AG</Copyright>
+    <PackageId>BBT.Maybe</PackageId>
     <PackageTags>Maybe Functional</PackageTags>
     <PackageIcon>icon.png</PackageIcon>
     <PackageProjectUrl>https://github.com/bbtsoftware/BBT.Maybe/</PackageProjectUrl>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
     <RepositoryType>git</RepositoryType>
     <RepositoryUrl>https://github.com/bbtsoftware/BBT.Maybe.git</RepositoryUrl>
     <PackageReleaseNotes>https://github.com/bbtsoftware/BBT.Maybe/releases/tag/3.1.1</PackageReleaseNotes>
+    <AllowedOutputExtensionsInPackageBuildOutputFolder>$(AllowedOutputExtensionsInPackageBuildOutputFolder);.pdb;.xml</AllowedOutputExtensionsInPackageBuildOutputFolder>
   </PropertyGroup>
 
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
@@ -32,6 +35,10 @@
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
   </PropertyGroup>
+
+  <ItemGroup>
+    <None Include="icon.png" Pack="true" PackagePath=""/>
+  </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="SauceControl.InheritDoc" Version="1.3.0">
