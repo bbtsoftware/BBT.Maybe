@@ -1,21 +1,16 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFrameworks>netstandard2.0;net6.0</TargetFrameworks>
+    <TargetFrameworks>netstandard2.0;net10.0</TargetFrameworks>
     <AssemblyTitle>BBT.MaybePattern</AssemblyTitle>
-    <CodeAnalysisRuleSet>..\BBT.MaybePattern.ruleset</CodeAnalysisRuleSet>
     <DocumentationFile>bin\$(Configuration)\BBT.MaybePattern.xml</DocumentationFile>
-    <OutputPath>bin\$(Configuration)\</OutputPath>
     <DebugSymbols>true</DebugSymbols>
   </PropertyGroup>
   
   <PropertyGroup>
     <Title>BBT Maybe</Title>
     <Description>An option type for .NET.</Description>
-    <Product>BBT.Maybe</Product>
-    <Company>BBT Software AG</Company>
     <Authors>BBT Software AG</Authors>
-    <Copyright>Copyright © BBT Software AG</Copyright>
     <PackageId>BBT.Maybe</PackageId>
     <PackageTags>Maybe Functional</PackageTags>
     <PackageIcon>icon.png</PackageIcon>
@@ -28,20 +23,12 @@
     <AllowedOutputExtensionsInPackageBuildOutputFolder>$(AllowedOutputExtensionsInPackageBuildOutputFolder);.pdb;.xml</AllowedOutputExtensionsInPackageBuildOutputFolder>
   </PropertyGroup>
 
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <DebugType>full</DebugType>
-  </PropertyGroup>
-
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <DebugType>pdbonly</DebugType>
-  </PropertyGroup>
-
   <ItemGroup>
     <None Include="icon.png" Pack="true" PackagePath=""/>
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="SauceControl.InheritDoc" Version="2.0.2">
+    <PackageReference Include="SauceControl.InheritDoc">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
@@ -53,7 +40,4 @@
     </AssemblyAttribute>
   </ItemGroup>
 
-  <PropertyGroup>
-    <AnalysisMode>AllEnabledByDefault</AnalysisMode>
-  </PropertyGroup>
-</Project>
+  </Project>

@@ -1,14 +1,27 @@
-﻿namespace BBT.MaybePattern.Tests
+namespace BBT.MaybePattern.Tests
 {
     using System;
     using System.IO;
-    using System.Runtime.Serialization.Formatters.Binary;
+    using System.Text.Json;
+    using BBT.MaybePattern;
+    using BBT.MaybePattern.Tests.TestData;
 
     /// <summary>
     /// Provides utility method for test purposes.
     /// </summary>
     public class TestUtils
     {
+        private sealed class SerializedEnvelope
+        {
+            public string TypeName { get; set; }
+
+            public bool? HasValue { get; set; }
+
+            public string ValueJson { get; set; }
+
+            public string JsonPayload { get; set; }
+        }
+
         /// <summary>
         /// Serializes the given object into memory stream.
         /// </summary>
@@ -19,16 +32,14 @@
             var stream = new MemoryStream();
             try
             {
-                var lFormatter = new BinaryFormatter();
-                lFormatter.Serialize(stream, objectType);
+                var envelope = BuildEnvelope(objectType);
+                JsonSerializer.Serialize(stream, envelope);
+                stream.Seek(0, SeekOrigin.Begin);
                 return stream;
             }
             catch
             {
-                if (stream != null)
-                {
-                    stream.Dispose();
-                }
+                stream.Dispose();
             }
 
             throw new InvalidOperationException();
@@ -41,10 +52,77 @@
         /// <returns>the deserialized object.</returns>
         public static object DeserializeFromStream(MemoryStream stream)
         {
-            var formatter = new BinaryFormatter();
             stream.Seek(0, SeekOrigin.Begin);
-            var objectType = formatter.Deserialize(stream);
-            return objectType;
+            var envelope = JsonSerializer.Deserialize<SerializedEnvelope>(stream)
+                ?? throw new InvalidOperationException();
+
+            if (envelope.TypeName == typeof(TestDataStruct).AssemblyQualifiedName)
+            {
+                var hasValue = envelope.HasValue.GetValueOrDefault(false);
+                var value = hasValue
+                    ? JsonSerializer.Deserialize<int>(envelope.ValueJson)
+                    : default(int?);
+
+                return new TestDataStruct
+                {
+                    MaybeStruct = hasValue
+                        ? Maybe.SomeStruct<int>(value)
+                        : Maybe.NoneStruct<int>(),
+                };
+            }
+
+            if (envelope.TypeName == typeof(TestDataClass).AssemblyQualifiedName)
+            {
+                var hasValue = envelope.HasValue.GetValueOrDefault(false);
+                var value = hasValue
+                    ? JsonSerializer.Deserialize<object>(envelope.ValueJson)
+                    : null;
+
+                return new TestDataClass
+                {
+                    Maybe = hasValue
+                        ? Maybe.Some(value)
+                        : Maybe.None<object>(),
+                };
+            }
+
+            var objectType = Type.GetType(envelope.TypeName)
+                ?? throw new InvalidOperationException();
+
+            return JsonSerializer.Deserialize(envelope.JsonPayload, objectType)
+                ?? throw new InvalidOperationException();
+        }
+
+        private static SerializedEnvelope BuildEnvelope(object objectType)
+        {
+            if (objectType is TestDataStruct testDataStruct)
+            {
+                return new SerializedEnvelope
+                {
+                    TypeName = typeof(TestDataStruct).AssemblyQualifiedName,
+                    HasValue = testDataStruct.MaybeStruct.HasValue,
+                    ValueJson = JsonSerializer.Serialize(testDataStruct.MaybeStruct.ValueOrDefault(default)),
+                };
+            }
+
+            if (objectType is TestDataClass testDataClass)
+            {
+                return new SerializedEnvelope
+                {
+                    TypeName = typeof(TestDataClass).AssemblyQualifiedName,
+                    HasValue = testDataClass.Maybe.HasValue,
+                    ValueJson = testDataClass.Maybe.HasValue
+                        ? JsonSerializer.Serialize(testDataClass.Maybe.ValueOrDefault(null))
+                        : null,
+                };
+            }
+
+            var objectRuntimeType = objectType.GetType();
+            return new SerializedEnvelope
+            {
+                TypeName = objectRuntimeType.AssemblyQualifiedName,
+                JsonPayload = JsonSerializer.Serialize(objectType, objectRuntimeType),
+            };
         }
     }
 }

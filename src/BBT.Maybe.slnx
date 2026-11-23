@@ -1,0 +1,4 @@
+<Solution>
+  <Project Path="BBT.MaybePattern.Tests/BBT.MaybePattern.Tests.csproj" />
+  <Project Path="BBT.MaybePattern/BBT.MaybePattern.csproj" />
+</Solution>

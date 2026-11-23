@@ -1,4 +1,4 @@
-﻿namespace BBT.MaybePattern.Tests
+namespace BBT.MaybePattern.Tests
 {
     using System;
     using System.Runtime.Serialization;
@@ -6,6 +6,7 @@
     using BBT.MaybePattern.Tests.TestData;
     using Shouldly;
     using Xunit;
+
 
     public sealed class MaybeStructTests
     {
