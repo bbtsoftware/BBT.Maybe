@@ -1,4 +1,4 @@
-﻿namespace BBT.MaybePattern.Tests
+namespace BBT.MaybePattern.Tests
 {
     using System;
     using System.Runtime.Serialization;
@@ -6,6 +6,8 @@
     using BBT.MaybePattern.Tests.TestData;
     using Shouldly;
     using Xunit;
+
+#pragma warning disable SYSLIB0050
 
     public sealed class MaybeTests
     {
@@ -607,4 +609,6 @@
             }
         }
     }
+
+#pragma warning restore SYSLIB0050
 }

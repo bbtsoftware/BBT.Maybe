@@ -1,4 +1,4 @@
-﻿namespace BBT.MaybePattern.Tests
+namespace BBT.MaybePattern.Tests
 {
     using System;
     using System.Runtime.Serialization;
@@ -15,7 +15,7 @@
             public void Should_Set_Value_If_Argument_Is_Not_Null()
             {
                 // Arrange
-                var baseStruct = new BaseStruct();
+                var baseStruct = default(BaseStruct);
                 var maybe = new MaybeStruct<BaseStruct>(baseStruct);
 
                 // Act & Assert
@@ -48,7 +48,7 @@
             public void Should_Set_Value_If_SerializationInfo_Contains_Value()
             {
                 // Arrange
-                var baseStruct = new BaseStruct();
+                var baseStruct = default(BaseStruct);
                 var serializationInfo = new SerializationInfo(typeof(MaybeStruct<>), new FormatterConverter());
                 serializationInfo.AddValue("value", baseStruct, typeof(BaseStruct));
 
@@ -297,7 +297,7 @@
             {
                 // Arrange
                 var maybe = Maybe.NoneStruct<BaseStruct>();
-                var otherType = new ReferencedStruct();
+                var otherType = default(ReferencedStruct);
 
                 // Act
                 var isEqual = maybe.Equals(otherType);
@@ -452,7 +452,7 @@
             public void Should_Return_Some_MaybeStruct_If_Assigned_With_Some_Struct()
             {
                 // Arrange
-                var someStruct = new BaseStruct();
+                var someStruct = default(BaseStruct);
 
                 // Act
                 MaybeStruct<BaseStruct> maybeSomeStruct = someStruct;
@@ -482,7 +482,7 @@
             public void Should_Return_HashCode_Of_Value_If_Some()
             {
                 // Arrange
-                var baseStruct = new BaseStruct();
+                var baseStruct = default(BaseStruct);
                 var maybe = Maybe.SomeStruct<BaseStruct>(baseStruct);
 
                 // Act
@@ -525,7 +525,7 @@
             public void Should_Add_Value_To_SerializationInfo()
             {
                 // Arrange
-                var baseStruct = new BaseStruct();
+                var baseStruct = default(BaseStruct);
                 var maybe = Maybe.SomeStruct<BaseStruct>(baseStruct);
                 var serializationInfo = new SerializationInfo(typeof(Maybe<>), new FormatterConverter());
 
@@ -544,7 +544,7 @@
             public void Should_Return_String_Representation_Of_Value_If_Some()
             {
                 // Arrange
-                var baseStruct = new BaseStruct();
+                var baseStruct = default(BaseStruct);
                 var maybe = Maybe.SomeStruct<BaseStruct>(baseStruct);
 
                 // Act
