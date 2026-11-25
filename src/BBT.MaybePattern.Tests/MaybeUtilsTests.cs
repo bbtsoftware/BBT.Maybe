@@ -1,11 +1,11 @@
-using System;
-using System.Runtime.Serialization;
-using BBT.MaybePattern.Tests.TestData;
-using Shouldly;
-using Xunit;
-
 namespace BBT.MaybePattern.Tests
 {
+    using System;
+    using System.Runtime.Serialization;
+    using BBT.MaybePattern.Tests.TestData;
+    using Shouldly;
+    using Xunit;
+
     public sealed class MaybeUtilsTests
     {
         public sealed class TheCheckArgumentNotNullMethod
@@ -19,7 +19,7 @@ namespace BBT.MaybePattern.Tests
                 // Act
                 var value = MaybeUtils.CheckArgumentNotNull(baseClass, nameof(baseClass));
 
-                //Assert
+                // Assert
                 value.ShouldBe(baseClass);
             }
 
@@ -49,7 +49,7 @@ namespace BBT.MaybePattern.Tests
                 // Act
                 var value = MaybeUtils.CheckParameterNotNull(baseClass, nameof(baseClass));
 
-                //Assert
+                // Assert
                 value.ShouldBe(baseClass);
             }
 
@@ -98,7 +98,7 @@ namespace BBT.MaybePattern.Tests
                 // Act
                 var value = MaybeUtils.GetDeserializedValue<BaseClass>(serializationInfo, key);
 
-                //Assert
+                // Assert
                 value.ShouldBe(baseClass);
             }
 
